@@ -74,7 +74,7 @@
 
 <header>
   <h1>SkyFish &mdash; Script Reference</h1>
-  <div class="sub">85 Udon scripts &middot; 163 inspector wiring edges</div>
+  <div class="sub">107 Udon scripts &middot; 240 inspector wiring edges</div>
   <div class="legend"><div class="legend-item"><span class="swatch" style="background:#ff6b6b"></span>Core gameplay loop</div><div class="legend-item"><span class="swatch" style="background:#4aa3ff"></span>Data & persistence</div><div class="legend-item"><span class="swatch" style="background:#ffa94d"></span>Networking</div><div class="legend-item"><span class="swatch" style="background:#ff6bd1"></span>Vulpari NPC</div><div class="legend-item"><span class="swatch" style="background:#4ad2a6"></span>World, weather, sky</div><div class="legend-item"><span class="swatch" style="background:#c1a0ff"></span>Gun, HUD, UI framing</div><div class="legend-item"><span class="swatch" style="background:#ffd166"></span>UI — vendors, forge, inventory</div></div>
 </header>
 
@@ -90,7 +90,7 @@
   <div class="controls">
     <input type="text" id="filter" placeholder="Filter by class name, purpose, or wiring&hellip;">
     <button id="clear-filter">Clear</button>
-    <span class="count" id="count">85 scripts</span>
+    <span class="count" id="count">107 scripts</span>
   </div>
   <table>
     <thead>
@@ -101,82 +101,11 @@
       </tr>
     </thead>
     <tbody>
-    <tr data-name="SkyFishBroadcastManager" data-cat="gameplay" id="row-SkyFishBroadcastManager">
-      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishBroadcastManager</b></td>
-      <td class="purpose">Network broadcast relay for world-wide rare catch and level-up announcements.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishAnnouncementHUD">SkyFishAnnouncementHUD</a><br> &larr; <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishCastController" data-cat="gameplay" id="row-SkyFishCastController">
-      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishCastController</b></td>
-      <td class="purpose">Harpoon cast input handler managing charge shot, Phase 1 trigger timing, and cancel logic.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishGunInfoPanel">SkyFishGunInfoPanel</a>, <a class="xref" data-target="SkyFishGunManager">SkyFishGunManager</a>, <a class="xref" data-target="SkyFishLineRenderer">SkyFishLineRenderer</a>, <a class="xref" data-target="SkyFishMinigame">SkyFishMinigame</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a><br>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishCatchPacker" data-cat="gameplay" id="row-SkyFishCatchPacker">
-      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishCatchPacker</b></td>
-      <td class="purpose">Bit-packs fish catch data (species, size tier, rarity, mutations) into a single int for persistence.</td>
-      <td class="wiring">
-        <br> &larr; <a class="xref" data-target="SkyFishEchoGrant">SkyFishEchoGrant</a>, <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishInventoryUI">SkyFishInventoryUI</a>, <a class="xref" data-target="SkyFishSellUI">SkyFishSellUI</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishChestRewards" data-cat="gameplay" id="row-SkyFishChestRewards">
-      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishChestRewards</b></td>
-      <td class="purpose">Chest reward roll and grant logic for treasure chests captured during Phase 2 minigame.</td>
-      <td class="wiring">
-        <br> &larr; <a class="xref" data-target="SkyFishSpecialInventoryUI">SkyFishSpecialInventoryUI</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishEchoGrant" data-cat="gameplay" id="row-SkyFishEchoGrant">
-      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishEchoGrant</b></td>
-      <td class="purpose">Echo (XP) grant and level-up system triggered after each fish catch and sell event.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishCatchPacker">SkyFishCatchPacker</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a><br> &larr; <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishGameManager" data-cat="gameplay" id="row-SkyFishGameManager">
-      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishGameManager</b></td>
-      <td class="purpose">Master state machine for the SkyFish harpoon fishing system from cast to catch storage.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="FishZoneIndex">FishZoneIndex</a>, <a class="xref" data-target="SkyFishBroadcastManager">SkyFishBroadcastManager</a>, <a class="xref" data-target="SkyFishCatchPacker">SkyFishCatchPacker</a>, <a class="xref" data-target="SkyFishEchoGrant">SkyFishEchoGrant</a>, <a class="xref" data-target="SkyFishGunInfoPanel">SkyFishGunInfoPanel</a>, <a class="xref" data-target="SkyFishGunManager">SkyFishGunManager</a>, <a class="xref" data-target="SkyFishLineRenderer">SkyFishLineRenderer</a>, <a class="xref" data-target="SkyFishMaterialLibrary">SkyFishMaterialLibrary</a>, <a class="xref" data-target="SkyFishMinigame">SkyFishMinigame</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a>, <a class="xref" data-target="SkyFishUIPositioner">SkyFishUIPositioner</a><br> &larr; <a class="xref" data-target="SkyFishBagInventoryUI">SkyFishBagInventoryUI</a>, <a class="xref" data-target="SkyFishCastController">SkyFishCastController</a>, <a class="xref" data-target="SkyFishGunManager">SkyFishGunManager</a>, <a class="xref" data-target="SkyFishMinigame">SkyFishMinigame</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>, <a class="xref" data-target="SkyFishZoneTrigger">SkyFishZoneTrigger</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishLineRenderer" data-cat="gameplay" id="row-SkyFishLineRenderer">
-      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishLineRenderer</b></td>
-      <td class="purpose">Harpoon line renderer managing cast arc, bolt flight, catch drag, and UI anchor transform.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a><br> &larr; <a class="xref" data-target="SkyFishCastController">SkyFishCastController</a>, <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishGunManager">SkyFishGunManager</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishMinigame" data-cat="gameplay" id="row-SkyFishMinigame">
-      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishMinigame</b></td>
-      <td class="purpose">Two-phase bite minigame controller managing ring precision UI (Phase 1) and bar fill catch (Phase 2).</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>, <a class="xref" data-target="SkyFishUIPositioner">SkyFishUIPositioner</a><br> &larr; <a class="xref" data-target="SkyFishCastController">SkyFishCastController</a>, <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishRaritySystem" data-cat="gameplay" id="row-SkyFishRaritySystem">
-      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishRaritySystem</b></td>
-      <td class="purpose">Rarity tier roller and data provider for rarity names, colors, mutation rolls, and size bell curves.</td>
-      <td class="wiring">
-        <br> &larr; <a class="xref" data-target="SkyFishAmmoVendorManager">SkyFishAmmoVendorManager</a>, <a class="xref" data-target="SkyFishAnnouncementHUD">SkyFishAnnouncementHUD</a>, <a class="xref" data-target="SkyFishBagInventoryUI">SkyFishBagInventoryUI</a>, <a class="xref" data-target="SkyFishEnhancementTransferUI">SkyFishEnhancementTransferUI</a>, <a class="xref" data-target="SkyFishForgeController">SkyFishForgeController</a>, <a class="xref" data-target="SkyFishForgeCrackUI">SkyFishForgeCrackUI</a>, <a class="xref" data-target="SkyFishForgeGemSelectUI">SkyFishForgeGemSelectUI</a>, <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishGunVendorManager">SkyFishGunVendorManager</a>, <a class="xref" data-target="SkyFishNameplate">SkyFishNameplate</a>, <a class="xref" data-target="SkyFishOverviewUI">SkyFishOverviewUI</a>, <a class="xref" data-target="SkyFishSeekerVendorManager">SkyFishSeekerVendorManager</a>, <a class="xref" data-target="SkyFishSpecialInventoryUI">SkyFishSpecialInventoryUI</a>
-      </td>
-    </tr>
-
-    <tr data-name="FishCatchIndex" data-cat="data" id="row-FishCatchIndex">
+        <tr data-name="FishCatchIndex" data-cat="data" id="row-FishCatchIndex">
       <td><span class="swatch" style="background:#4aa3ff"></span><b>FishCatchIndex</b></td>
       <td class="purpose">Per-island static data container for fish species, rarity tiers, spawn weights, and time/weather modifiers.</td>
       <td class="wiring">
+        
         <br>
       </td>
     </tr>
@@ -185,175 +114,9 @@
       <td><span class="swatch" style="background:#4aa3ff"></span><b>FishZoneIndex</b></td>
       <td class="purpose">JSON-loaded per-island species pool with rarity-tier and SK-gated weighted random rolls.</td>
       <td class="wiring">
-        <br> &larr; <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishInventoryUI">SkyFishInventoryUI</a>, <a class="xref" data-target="SkyFishSellUI">SkyFishSellUI</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishAchievements" data-cat="data" id="row-SkyFishAchievements">
-      <td><span class="swatch" style="background:#4aa3ff"></span><b>SkyFishAchievements</b></td>
-      <td class="purpose">Achievement data store and unlock tracker for Sky Feats, backed by persistence quest-item bitmask.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a><br> &larr; <a class="xref" data-target="SkyFishAchievementItem">SkyFishAchievementItem</a>, <a class="xref" data-target="SkyFishAchievementsMenu">SkyFishAchievementsMenu</a>, <a class="xref" data-target="SkyFishOverviewUI">SkyFishOverviewUI</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishItemRegistry" data-cat="data" id="row-SkyFishItemRegistry">
-      <td><span class="swatch" style="background:#4aa3ff"></span><b>SkyFishItemRegistry</b></td>
-      <td class="purpose">JSON-loaded item registry providing names, sprites, stats, rarity, and condition labels for all item categories.</td>
-      <td class="wiring">
-        <br> &larr; <a class="xref" data-target="SkyFishAmmoVendorManager">SkyFishAmmoVendorManager</a>, <a class="xref" data-target="SkyFishBagInventoryUI">SkyFishBagInventoryUI</a>, <a class="xref" data-target="SkyFishEnhancementTransferUI">SkyFishEnhancementTransferUI</a>, <a class="xref" data-target="SkyFishForgeGemSelectUI">SkyFishForgeGemSelectUI</a>, <a class="xref" data-target="SkyFishGunInfoPanel">SkyFishGunInfoPanel</a>, <a class="xref" data-target="SkyFishGunVendorManager">SkyFishGunVendorManager</a>, <a class="xref" data-target="SkyFishNameplate">SkyFishNameplate</a>, <a class="xref" data-target="SkyFishOverviewUI">SkyFishOverviewUI</a>, <a class="xref" data-target="SkyFishSeekerVendorManager">SkyFishSeekerVendorManager</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishMaterialLibrary" data-cat="data" id="row-SkyFishMaterialLibrary">
-      <td><span class="swatch" style="background:#4aa3ff"></span><b>SkyFishMaterialLibrary</b></td>
-      <td class="purpose">Material library providing shader mutation materials indexed by mutation ID for fish model application.</td>
-      <td class="wiring">
-        <br> &larr; <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishLargeCard">SkyFishLargeCard</a>, <a class="xref" data-target="SkyFishShowOffPickup">SkyFishShowOffPickup</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishMutationBackgrounds" data-cat="data" id="row-SkyFishMutationBackgrounds">
-      <td><span class="swatch" style="background:#4aa3ff"></span><b>SkyFishMutationBackgrounds</b></td>
-      <td class="purpose">Mutation background image library providing per-mutation backdrop sprites for item cards.</td>
-      <td class="wiring">
-        <br> &larr; <a class="xref" data-target="SkyFishSellUI">SkyFishSellUI</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishPersistence" data-cat="data" id="row-SkyFishPersistence">
-      <td><span class="swatch" style="background:#4aa3ff"></span><b>SkyFishPersistence</b></td>
-      <td class="purpose">VRC Persistence backend storing all player progression — inventory, currency, bolts, and catch records.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishAnnouncementHUD">SkyFishAnnouncementHUD</a>, <a class="xref" data-target="SkyFishInventoryUI">SkyFishInventoryUI</a><br> &larr; <a class="xref" data-target="SkyFishAchievements">SkyFishAchievements</a>, <a class="xref" data-target="SkyFishAmmoVendorManager">SkyFishAmmoVendorManager</a>, <a class="xref" data-target="SkyFishBagInventoryUI">SkyFishBagInventoryUI</a>, <a class="xref" data-target="SkyFishBagManager">SkyFishBagManager</a>, <a class="xref" data-target="SkyFishCastController">SkyFishCastController</a>, <a class="xref" data-target="SkyFishCurrencyUI">SkyFishCurrencyUI</a>, <a class="xref" data-target="SkyFishEchoGrant">SkyFishEchoGrant</a>, <a class="xref" data-target="SkyFishEnhancementTransferUI">SkyFishEnhancementTransferUI</a>, <a class="xref" data-target="SkyFishForgeGemSelectUI">SkyFishForgeGemSelectUI</a>, <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishGunInfoPanel">SkyFishGunInfoPanel</a>, <a class="xref" data-target="SkyFishGunManager">SkyFishGunManager</a>, <a class="xref" data-target="SkyFishGunSpawner">SkyFishGunSpawner</a>, <a class="xref" data-target="SkyFishGunVendorManager">SkyFishGunVendorManager</a>, <a class="xref" data-target="SkyFishInventoryUI">SkyFishInventoryUI</a>, <a class="xref" data-target="SkyFishLineRenderer">SkyFishLineRenderer</a>, <a class="xref" data-target="SkyFishOverviewUI">SkyFishOverviewUI</a>, <a class="xref" data-target="SkyFishPlayerHUD">SkyFishPlayerHUD</a>, <a class="xref" data-target="SkyFishSeekerVendorManager">SkyFishSeekerVendorManager</a>, <a class="xref" data-target="SkyFishSellUI">SkyFishSellUI</a>, <a class="xref" data-target="SkyFishSpecialInventoryUI">SkyFishSpecialInventoryUI</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishTitleRegistry" data-cat="data" id="row-SkyFishTitleRegistry">
-      <td><span class="swatch" style="background:#4aa3ff"></span><b>SkyFishTitleRegistry</b></td>
-      <td class="purpose">Player title data store providing display strings for earned title IDs.</td>
-      <td class="wiring">
-        <br> &larr; <a class="xref" data-target="SkyFishBagInventoryUI">SkyFishBagInventoryUI</a>, <a class="xref" data-target="SkyFishNameplate">SkyFishNameplate</a>, <a class="xref" data-target="SkyFishOverviewUI">SkyFishOverviewUI</a>
-      </td>
-    </tr>
-
-    <tr data-name="VulpariDialogRegistry" data-cat="data" id="row-VulpariDialogRegistry">
-      <td><span class="swatch" style="background:#4aa3ff"></span><b>VulpariDialogRegistry</b></td>
-      <td class="purpose">Vulpari dialog tree registry providing conversation lookup by dialog ID.</td>
-      <td class="wiring">
-        <br> &larr; <a class="xref" data-target="VulpariDialog">VulpariDialog</a>, <a class="xref" data-target="VulpariPrompt">VulpariPrompt</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishNetworkSync" data-cat="network" id="row-SkyFishNetworkSync">
-      <td><span class="swatch" style="background:#ffa94d"></span><b>SkyFishNetworkSync</b></td>
-      <td class="purpose">Network state sync relay broadcasting fishing events, catch results, and rare catches to all clients.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishBagInventoryUI">SkyFishBagInventoryUI</a>, <a class="xref" data-target="SkyFishBroadcastManager">SkyFishBroadcastManager</a>, <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishGunManager">SkyFishGunManager</a>, <a class="xref" data-target="SkyFishLineRenderer">SkyFishLineRenderer</a>, <a class="xref" data-target="SkyFishNameplate">SkyFishNameplate</a>, <a class="xref" data-target="SkyFishShowOffPickup">SkyFishShowOffPickup</a><br> &larr; <a class="xref" data-target="SkyFishCastController">SkyFishCastController</a>, <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishGunManager">SkyFishGunManager</a>, <a class="xref" data-target="SkyFishGunSpawner">SkyFishGunSpawner</a>, <a class="xref" data-target="SkyFishMinigame">SkyFishMinigame</a>, <a class="xref" data-target="SkyFishShowOffPickup">SkyFishShowOffPickup</a>, <a class="xref" data-target="SkyFishSlotManager">SkyFishSlotManager</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishSlotManager" data-cat="network" id="row-SkyFishSlotManager">
-      <td><span class="swatch" style="background:#ffa94d"></span><b>SkyFishSlotManager</b></td>
-      <td class="purpose">Slot ownership manager assigning fishing system slots to players on join and release.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a><br> &larr; <a class="xref" data-target="SkyFishInventoryUI">SkyFishInventoryUI</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishZoneTrigger" data-cat="network" id="row-SkyFishZoneTrigger">
-      <td><span class="swatch" style="background:#ffa94d"></span><b>SkyFishZoneTrigger</b></td>
-      <td class="purpose">Zone boundary trigger that notifies the game manager when the local player enters or exits a fishing zone.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a><br>
-      </td>
-    </tr>
-
-    <tr data-name="VulpariBlink" data-cat="vulpari" id="row-VulpariBlink">
-      <td><span class="swatch" style="background:#ff6bd1"></span><b>VulpariBlink</b></td>
-      <td class="purpose">Eye blink animation controller for the Vulpari NPC with randomized timing.</td>
-      <td class="wiring">
-        <br> &larr; <a class="xref" data-target="VulpariPresence">VulpariPresence</a>
-      </td>
-    </tr>
-
-    <tr data-name="VulpariDialog" data-cat="vulpari" id="row-VulpariDialog">
-      <td><span class="swatch" style="background:#ff6bd1"></span><b>VulpariDialog</b></td>
-      <td class="purpose">Dialog data container for a single Vulpari conversation node with lines, choices, and branching.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="VulpariDialogRegistry">VulpariDialogRegistry</a>, <a class="xref" data-target="VulpariDialogUI">VulpariDialogUI</a>, <a class="xref" data-target="VulpariPresence">VulpariPresence</a>, <a class="xref" data-target="VulpariPrompt">VulpariPrompt</a><br> &larr; <a class="xref" data-target="SkyFishMarketTeleporter">SkyFishMarketTeleporter</a>, <a class="xref" data-target="VulpariFlourish">VulpariFlourish</a>, <a class="xref" data-target="VulpariIdleMotion">VulpariIdleMotion</a>
-      </td>
-    </tr>
-
-    <tr data-name="VulpariDialogUI" data-cat="vulpari" id="row-VulpariDialogUI">
-      <td><span class="swatch" style="background:#ff6bd1"></span><b>VulpariDialogUI</b></td>
-      <td class="purpose">Vulpari dialog UI controller managing line display, typewriter animation, and player choice buttons.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="VulpariTextAnimator">VulpariTextAnimator</a><br> &larr; <a class="xref" data-target="VulpariDialog">VulpariDialog</a>
-      </td>
-    </tr>
-
-    <tr data-name="VulpariFlourish" data-cat="vulpari" id="row-VulpariFlourish">
-      <td><span class="swatch" style="background:#ff6bd1"></span><b>VulpariFlourish</b></td>
-      <td class="purpose">Vulpari NPC flourish gesture trigger playing contextual emote animations on interaction.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="VulpariDialog">VulpariDialog</a>, <a class="xref" data-target="VulpariPresence">VulpariPresence</a><br>
-      </td>
-    </tr>
-
-    <tr data-name="VulpariIdleMotion" data-cat="vulpari" id="row-VulpariIdleMotion">
-      <td><span class="swatch" style="background:#ff6bd1"></span><b>VulpariIdleMotion</b></td>
-      <td class="purpose">Vulpari NPC idle motion controller applying subtle floating and swaying animations.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="VulpariDialog">VulpariDialog</a><br>
-      </td>
-    </tr>
-
-    <tr data-name="VulpariPresence" data-cat="vulpari" id="row-VulpariPresence">
-      <td><span class="swatch" style="background:#ff6bd1"></span><b>VulpariPresence</b></td>
-      <td class="purpose">Vulpari NPC presence manager handling player proximity detection and greeting sequences.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="VulpariBlink">VulpariBlink</a><br> &larr; <a class="xref" data-target="VulpariDialog">VulpariDialog</a>, <a class="xref" data-target="VulpariFlourish">VulpariFlourish</a>
-      </td>
-    </tr>
-
-    <tr data-name="VulpariPrompt" data-cat="vulpari" id="row-VulpariPrompt">
-      <td><span class="swatch" style="background:#ff6bd1"></span><b>VulpariPrompt</b></td>
-      <td class="purpose">World-space interaction prompt that appears above the Vulpari NPC when the player is nearby.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="VulpariDialogRegistry">VulpariDialogRegistry</a>, <a class="xref" data-target="VulpariTextAnimator">VulpariTextAnimator</a><br> &larr; <a class="xref" data-target="VulpariDialog">VulpariDialog</a>
-      </td>
-    </tr>
-
-    <tr data-name="VulpariTextAnimator" data-cat="vulpari" id="row-VulpariTextAnimator">
-      <td><span class="swatch" style="background:#ff6bd1"></span><b>VulpariTextAnimator</b></td>
-      <td class="purpose">Typewriter-style text animator for Vulpari dialog lines with configurable speed and punctuation pauses.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="VulpariVoice">VulpariVoice</a><br> &larr; <a class="xref" data-target="VulpariDialogUI">VulpariDialogUI</a>, <a class="xref" data-target="VulpariPrompt">VulpariPrompt</a>
-      </td>
-    </tr>
-
-    <tr data-name="VulpariVoice" data-cat="vulpari" id="row-VulpariVoice">
-      <td><span class="swatch" style="background:#ff6bd1"></span><b>VulpariVoice</b></td>
-      <td class="purpose">Vulpari NPC voice audio controller playing line-matched clips in sync with dialog display.</td>
-      <td class="wiring">
-        <br> &larr; <a class="xref" data-target="VulpariTextAnimator">VulpariTextAnimator</a>
-      </td>
-    </tr>
-
-    <tr data-name="CloudCellManager" data-cat="world" id="row-CloudCellManager">
-      <td><span class="swatch" style="background:#4ad2a6"></span><b>CloudCellManager</b></td>
-      <td class="purpose">Player-position-driven cloud cell activation grid with weather-based density and radius control.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="WeatherManager">WeatherManager</a><br>
-      </td>
-    </tr>
-
-    <tr data-name="CloudController" data-cat="world" id="row-CloudController">
-      <td><span class="swatch" style="background:#4ad2a6"></span><b>CloudController</b></td>
-      <td class="purpose">Cloud material tint and cluster density controller driven by time-of-day and weather state.</td>
-      <td class="wiring">
-        <br> &larr; <a class="xref" data-target="WeatherManager">WeatherManager</a>
+        
+        <br>
+         &larr; <a class="xref" data-target="SkyFishAchievements">SkyFishAchievements</a>, <a class="xref" data-target="SkyFishCollectorIManager">SkyFishCollectorIManager</a>, <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishInventoryUI">SkyFishInventoryUI</a>, <a class="xref" data-target="SkyFishSellUI">SkyFishSellUI</a>
       </td>
     </tr>
 
@@ -361,22 +124,7 @@
       <td><span class="swatch" style="background:#4ad2a6"></span><b>FogWallController</b></td>
       <td class="purpose">Fog wall material color, alpha, and player-following controller driven by weather transitions.</td>
       <td class="wiring">
-         &rarr; <a class="xref" data-target="WeatherManager">WeatherManager</a><br>
-      </td>
-    </tr>
-
-    <tr data-name="HeroCloudController" data-cat="world" id="row-HeroCloudController">
-      <td><span class="swatch" style="background:#4ad2a6"></span><b>HeroCloudController</b></td>
-      <td class="purpose">Hero cloud wind, color, and per-cloud shape randomization controller driven by time-of-day and weather.</td>
-      <td class="wiring">
-        <br> &larr; <a class="xref" data-target="WeatherManager">WeatherManager</a>
-      </td>
-    </tr>
-
-    <tr data-name="HeroCloudLODManager" data-cat="world" id="row-HeroCloudLODManager">
-      <td><span class="swatch" style="background:#4ad2a6"></span><b>HeroCloudLODManager</b></td>
-      <td class="purpose">Distance-based LOD activation manager that enables nearby hero cloud GameObjects and disables distant ones.</td>
-      <td class="wiring">
+         &rarr; <a class="xref" data-target="WeatherManager">WeatherManager</a>
         <br>
       </td>
     </tr>
@@ -385,207 +133,47 @@
       <td><span class="swatch" style="background:#4ad2a6"></span><b>MurkKillZone</b></td>
       <td class="purpose">Teleports local player back to safety when they descend into the Murk kill zone.</td>
       <td class="wiring">
+        
+        <br>
+      </td>
+    </tr>
+
+    <tr data-name="PersistenceToggleManager" data-cat="data" id="row-PersistenceToggleManager">
+      <td><span class="swatch" style="background:#4aa3ff"></span><b>PersistenceToggleManager</b></td>
+      <td class="purpose">Persistent GameObject toggle manager using VRC PlayerData for save/restore across sessions.</td>
+      <td class="wiring">
+        
         <br>
       </td>
     </tr>
 
     <tr data-name="SkyController" data-cat="world" id="row-SkyController">
       <td><span class="swatch" style="background:#4ad2a6"></span><b>SkyController</b></td>
-      <td class="purpose">DynamicSkybox material, scene fog, sun light, and ambient intensity controller with smooth time/weather transitions.</td>
+      <td class="purpose">Sole owner of skybox shader properties, sun light, fog, and ambient — drives a continuous day/night cycle from WeatherManager.</td>
       <td class="wiring">
-         &rarr; <a class="xref" data-target="WeatherManager">WeatherManager</a><br> &larr; <a class="xref" data-target="SkyFishDebugPanel">SkyFishDebugPanel</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishMarketLock" data-cat="world" id="row-SkyFishMarketLock">
-      <td><span class="swatch" style="background:#4ad2a6"></span><b>SkyFishMarketLock</b></td>
-      <td class="purpose">Market area entry lock that restricts access until the player meets a minimum level requirement.</td>
-      <td class="wiring">
-        <br> &larr; <a class="xref" data-target="SkyFishMarketTeleporter">SkyFishMarketTeleporter</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishMarketTeleporter" data-cat="world" id="row-SkyFishMarketTeleporter">
-      <td><span class="swatch" style="background:#4ad2a6"></span><b>SkyFishMarketTeleporter</b></td>
-      <td class="purpose">Teleports the local player to the fish market zone on button press.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishMarketLock">SkyFishMarketLock</a>, <a class="xref" data-target="SkyFishMenuSpawner">SkyFishMenuSpawner</a>, <a class="xref" data-target="SkyFishPageManager">SkyFishPageManager</a>, <a class="xref" data-target="SkyFishSellUI">SkyFishSellUI</a>, <a class="xref" data-target="VulpariDialog">VulpariDialog</a><br> &larr; <a class="xref" data-target="SkyFishMenuSpawner">SkyFishMenuSpawner</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyboxSwapper" data-cat="world" id="row-SkyboxSwapper">
-      <td><span class="swatch" style="background:#4ad2a6"></span><b>SkyboxSwapper</b></td>
-      <td class="purpose">Swaps RenderSettings.skybox material on time-of-day transitions.</td>
-      <td class="wiring">
-        <br> &larr; <a class="xref" data-target="WeatherManager">WeatherManager</a>
-      </td>
-    </tr>
-
-    <tr data-name="VolumetricCloudController" data-cat="world" id="row-VolumetricCloudController">
-      <td><span class="swatch" style="background:#4ad2a6"></span><b>VolumetricCloudController</b></td>
-      <td class="purpose">Volumetric cloud material parameter controller for density, base height, and lighting driven by weather.</td>
-      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishGlobalEvents">SkyFishGlobalEvents</a>, <a class="xref" data-target="WeatherManager">WeatherManager</a>
         <br>
+         &larr; <a class="xref" data-target="SkyFishDebugPanel">SkyFishDebugPanel</a>
       </td>
     </tr>
 
-    <tr data-name="WeatherListener" data-cat="world" id="row-WeatherListener">
-      <td><span class="swatch" style="background:#4ad2a6"></span><b>WeatherListener</b></td>
-      <td class="purpose">Lightweight weather event receiver that forwards time-of-day and weather state changes to a target component.</td>
+    <tr data-name="SkyFishAchievementCard" data-cat="ui" id="row-SkyFishAchievementCard">
+      <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishAchievementCard</b></td>
+      <td class="purpose">One achievement card in the Sky Feats grid — pure display component driven by SkyFishAchievements.</td>
       <td class="wiring">
-         &rarr; <a class="xref" data-target="WeatherManager">WeatherManager</a><br>
-      </td>
-    </tr>
-
-    <tr data-name="WeatherManager" data-cat="world" id="row-WeatherManager">
-      <td><span class="swatch" style="background:#4ad2a6"></span><b>WeatherManager</b></td>
-      <td class="purpose">Central weather and time-of-day state machine broadcasting changes to all registered weather listeners.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="CloudController">CloudController</a>, <a class="xref" data-target="HeroCloudController">HeroCloudController</a>, <a class="xref" data-target="SkyboxSwapper">SkyboxSwapper</a><br> &larr; <a class="xref" data-target="CloudCellManager">CloudCellManager</a>, <a class="xref" data-target="FogWallController">FogWallController</a>, <a class="xref" data-target="SkyController">SkyController</a>, <a class="xref" data-target="SkyFishBagInventoryUI">SkyFishBagInventoryUI</a>, <a class="xref" data-target="SkyFishDebugPanel">SkyFishDebugPanel</a>, <a class="xref" data-target="SkyFishPlayerHUD">SkyFishPlayerHUD</a>, <a class="xref" data-target="WeatherListener">WeatherListener</a>
-      </td>
-    </tr>
-
-    <tr data-name="PersistenceToggleManager" data-cat="hud" id="row-PersistenceToggleManager">
-      <td><span class="swatch" style="background:#c1a0ff"></span><b>PersistenceToggleManager</b></td>
-      <td class="purpose">Persistent GameObject toggle manager using VRC PlayerData for save/restore across sessions.</td>
-      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishAchievements">SkyFishAchievements</a>
         <br>
+         &larr; <a class="xref" data-target="SkyFishAchievements">SkyFishAchievements</a>
       </td>
     </tr>
 
-    <tr data-name="SkyFishAnnouncementHUD" data-cat="hud" id="row-SkyFishAnnouncementHUD">
-      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishAnnouncementHUD</b></td>
-      <td class="purpose">Queued world-space announcement banner for level-up, zone change, weather events, and rare catches.</td>
+    <tr data-name="SkyFishAchievements" data-cat="data" id="row-SkyFishAchievements">
+      <td><span class="swatch" style="background:#4aa3ff"></span><b>SkyFishAchievements</b></td>
+      <td class="purpose">Long-term goal tracker for Sky Feats — handles unlock detection, tiered SC reward grants, and persistence-backed bitmask state.</td>
       <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a><br> &larr; <a class="xref" data-target="SkyFishBroadcastManager">SkyFishBroadcastManager</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishCurrencyUI" data-cat="hud" id="row-SkyFishCurrencyUI">
-      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishCurrencyUI</b></td>
-      <td class="purpose">Currency HUD display controller that syncs Sky Coin balance from persistence.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a><br> &larr; <a class="xref" data-target="SkyFishAmmoVendorManager">SkyFishAmmoVendorManager</a>, <a class="xref" data-target="SkyFishBagManager">SkyFishBagManager</a>, <a class="xref" data-target="SkyFishEnhancementTransferUI">SkyFishEnhancementTransferUI</a>, <a class="xref" data-target="SkyFishForgeGemSelectUI">SkyFishForgeGemSelectUI</a>, <a class="xref" data-target="SkyFishGunVendorManager">SkyFishGunVendorManager</a>, <a class="xref" data-target="SkyFishSeekerVendorManager">SkyFishSeekerVendorManager</a>, <a class="xref" data-target="SkyFishSellUI">SkyFishSellUI</a>, <a class="xref" data-target="SkyFishSpecialInventoryUI">SkyFishSpecialInventoryUI</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishDebugPanel" data-cat="hud" id="row-SkyFishDebugPanel">
-      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishDebugPanel</b></td>
-      <td class="purpose">Inspector debug panel for testing time-of-day and weather combinations via toggleable logging.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyController">SkyController</a>, <a class="xref" data-target="WeatherManager">WeatherManager</a><br>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishGunInfoPanel" data-cat="hud" id="row-SkyFishGunInfoPanel">
-      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishGunInfoPanel</b></td>
-      <td class="purpose">On-gun info panel for displaying flash warnings and ammo status to the local player.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishItemRegistry">SkyFishItemRegistry</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a><br> &larr; <a class="xref" data-target="SkyFishCastController">SkyFishCastController</a>, <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishGunManager" data-cat="hud" id="row-SkyFishGunManager">
-      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishGunManager</b></td>
-      <td class="purpose">Gun loadout manager tracking equipped dart, bolt, and bag and pushing stats to game systems.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishLineRenderer">SkyFishLineRenderer</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a><br> &larr; <a class="xref" data-target="SkyFishBagInventoryUI">SkyFishBagInventoryUI</a>, <a class="xref" data-target="SkyFishCastController">SkyFishCastController</a>, <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishGunSpawner">SkyFishGunSpawner</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishGunSpawner" data-cat="hud" id="row-SkyFishGunSpawner">
-      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishGunSpawner</b></td>
-      <td class="purpose">Spawns and assigns the player&#x27;s equipped harpoon gun prefab on join and loadout change.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishGunManager">SkyFishGunManager</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a><br>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishMenuSpawner" data-cat="hud" id="row-SkyFishMenuSpawner">
-      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishMenuSpawner</b></td>
-      <td class="purpose">Spawns and positions the player&#x27;s wrist menu UI on join and avatar change.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishMarketTeleporter">SkyFishMarketTeleporter</a>, <a class="xref" data-target="SkyFishPageManager">SkyFishPageManager</a><br> &larr; <a class="xref" data-target="SkyFishMarketTeleporter">SkyFishMarketTeleporter</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishNameplate" data-cat="hud" id="row-SkyFishNameplate">
-      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishNameplate</b></td>
-      <td class="purpose">Player nameplate UI that displays display name and level above the player&#x27;s head.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishItemRegistry">SkyFishItemRegistry</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a>, <a class="xref" data-target="SkyFishTitleRegistry">SkyFishTitleRegistry</a><br> &larr; <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishOverviewUI" data-cat="hud" id="row-SkyFishOverviewUI">
-      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishOverviewUI</b></td>
-      <td class="purpose">Overview stats panel showing lifetime catches, species count, level, and currency totals.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishAchievements">SkyFishAchievements</a>, <a class="xref" data-target="SkyFishItemRegistry">SkyFishItemRegistry</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a>, <a class="xref" data-target="SkyFishTitleRegistry">SkyFishTitleRegistry</a><br>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishPageManager" data-cat="hud" id="row-SkyFishPageManager">
-      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishPageManager</b></td>
-      <td class="purpose">Multi-page UI controller for the main HUD panel managing tab navigation and page activation.</td>
-      <td class="wiring">
-        <br> &larr; <a class="xref" data-target="SkyFishMarketTeleporter">SkyFishMarketTeleporter</a>, <a class="xref" data-target="SkyFishMenuSpawner">SkyFishMenuSpawner</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishPatreonUnlock" data-cat="hud" id="row-SkyFishPatreonUnlock">
-      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishPatreonUnlock</b></td>
-      <td class="purpose">Patreon supporter reward system unlocking exclusive cosmetics based on persistent unlock flags.</td>
-      <td class="wiring">
+         &rarr; <a class="xref" data-target="FishZoneIndex">FishZoneIndex</a>, <a class="xref" data-target="SkyFishAchievementCard">SkyFishAchievementCard</a>, <a class="xref" data-target="SkyFishAnnouncementHUD">SkyFishAnnouncementHUD</a>, <a class="xref" data-target="SkyFishCatchPacker">SkyFishCatchPacker</a>, <a class="xref" data-target="SkyFishInventoryUI">SkyFishInventoryUI</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a>
         <br>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishPlayerHUD" data-cat="hud" id="row-SkyFishPlayerHUD">
-      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishPlayerHUD</b></td>
-      <td class="purpose">Player heads-up display controller syncing level, currency, and active zone to the HUD UI.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="WeatherManager">WeatherManager</a><br>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishShowOffPickup" data-cat="hud" id="row-SkyFishShowOffPickup">
-      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishShowOffPickup</b></td>
-      <td class="purpose">Pickup behaviour for the show-off display stand allowing players to place and retrieve caught fish.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishMaterialLibrary">SkyFishMaterialLibrary</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a><br> &larr; <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishUIPositioner" data-cat="hud" id="row-SkyFishUIPositioner">
-      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishUIPositioner</b></td>
-      <td class="purpose">World-space UI positioner that smoothly follows a target transform at a configurable offset.</td>
-      <td class="wiring">
-        <br> &larr; <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishMinigame">SkyFishMinigame</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishWristFollower" data-cat="hud" id="row-SkyFishWristFollower">
-      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishWristFollower</b></td>
-      <td class="purpose">Wrist-attachment follower that positions and orients a UI panel relative to the player&#x27;s wrist bone.</td>
-      <td class="wiring">
-        <br>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishAchievementItem" data-cat="ui" id="row-SkyFishAchievementItem">
-      <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishAchievementItem</b></td>
-      <td class="purpose">UI card for a single Sky Feat achievement showing icon, title, progress bar, and status.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishAchievements">SkyFishAchievements</a><br> &larr; <a class="xref" data-target="SkyFishAchievementsMenu">SkyFishAchievementsMenu</a>
-      </td>
-    </tr>
-
-    <tr data-name="SkyFishAchievementsMenu" data-cat="ui" id="row-SkyFishAchievementsMenu">
-      <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishAchievementsMenu</b></td>
-      <td class="purpose">Achievement grid menu controller that drives all SkyFishAchievementItem cards via event-driven refresh.</td>
-      <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishAchievementItem">SkyFishAchievementItem</a>, <a class="xref" data-target="SkyFishAchievements">SkyFishAchievements</a><br>
+         &larr; <a class="xref" data-target="SkyFishAchievementCard">SkyFishAchievementCard</a>, <a class="xref" data-target="SkyFishOverviewUI">SkyFishOverviewUI</a>
       </td>
     </tr>
 
@@ -593,7 +181,9 @@
       <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishAmmoVendorCard</b></td>
       <td class="purpose">Bolt vendor UI card — displays name, stock, stats, and buy buttons for one bolt type.</td>
       <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishAmmoVendorManager">SkyFishAmmoVendorManager</a><br>
+         &rarr; <a class="xref" data-target="SkyFishAmmoVendorManager">SkyFishAmmoVendorManager</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishAmmoVendorManager">SkyFishAmmoVendorManager</a>
       </td>
     </tr>
 
@@ -601,7 +191,19 @@
       <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishAmmoVendorManager</b></td>
       <td class="purpose">Bolt vendor logic controller managing card registration, purchase flow, and persistence drift polling.</td>
       <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishCurrencyUI">SkyFishCurrencyUI</a>, <a class="xref" data-target="SkyFishItemRegistry">SkyFishItemRegistry</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a><br> &larr; <a class="xref" data-target="SkyFishAmmoVendorCard">SkyFishAmmoVendorCard</a>
+         &rarr; <a class="xref" data-target="SkyFishAmmoVendorCard">SkyFishAmmoVendorCard</a>, <a class="xref" data-target="SkyFishCurrencyUI">SkyFishCurrencyUI</a>, <a class="xref" data-target="SkyFishItemRegistry">SkyFishItemRegistry</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishAmmoVendorCard">SkyFishAmmoVendorCard</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishAnnouncementHUD" data-cat="hud" id="row-SkyFishAnnouncementHUD">
+      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishAnnouncementHUD</b></td>
+      <td class="purpose">Queued world-space announcement banner for level-up, zone change, weather events, and rare catches.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishAchievements">SkyFishAchievements</a>, <a class="xref" data-target="SkyFishBroadcastManager">SkyFishBroadcastManager</a>, <a class="xref" data-target="SkyFishCollectorIManager">SkyFishCollectorIManager</a>, <a class="xref" data-target="SkyFishDailyQuests">SkyFishDailyQuests</a>, <a class="xref" data-target="SkyFishDailyRewards">SkyFishDailyRewards</a>, <a class="xref" data-target="SkyFishGlobalEvents">SkyFishGlobalEvents</a>, <a class="xref" data-target="SkyFishGrappleTutorialPickup">SkyFishGrappleTutorialPickup</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="WeatherManager">WeatherManager</a>
       </td>
     </tr>
 
@@ -609,7 +211,9 @@
       <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishBagCard</b></td>
       <td class="purpose">Bag upgrade tier UI card displaying slot count, price, and purchase state for one tier.</td>
       <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishBagManager">SkyFishBagManager</a><br>
+         &rarr; <a class="xref" data-target="SkyFishBagManager">SkyFishBagManager</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishBagManager">SkyFishBagManager</a>
       </td>
     </tr>
 
@@ -617,7 +221,9 @@
       <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishBagGridCard</b></td>
       <td class="purpose">Minimal inventory grid card showing icon and name for one item slot in the Sky Bag.</td>
       <td class="wiring">
-        <br> &larr; <a class="xref" data-target="SkyFishBagInventoryUI">SkyFishBagInventoryUI</a>
+         &rarr; <a class="xref" data-target="SkyFishBagInventoryUI">SkyFishBagInventoryUI</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishBagInventoryUI">SkyFishBagInventoryUI</a>
       </td>
     </tr>
 
@@ -625,7 +231,9 @@
       <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishBagInventoryUI</b></td>
       <td class="purpose">Sky Bag inventory grid UI controller managing card pooling, category tabs, and item preview display.</td>
       <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishBagGridCard">SkyFishBagGridCard</a>, <a class="xref" data-target="SkyFishEnhancementSystem">SkyFishEnhancementSystem</a>, <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishGunManager">SkyFishGunManager</a>, <a class="xref" data-target="SkyFishItemRegistry">SkyFishItemRegistry</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a>, <a class="xref" data-target="SkyFishTitleRegistry">SkyFishTitleRegistry</a>, <a class="xref" data-target="WeatherManager">WeatherManager</a><br> &larr; <a class="xref" data-target="SkyFishEnhancementTransferUI">SkyFishEnhancementTransferUI</a>, <a class="xref" data-target="SkyFishForgeGemSelectUI">SkyFishForgeGemSelectUI</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>
+         &rarr; <a class="xref" data-target="SkyFishBagGridCard">SkyFishBagGridCard</a>, <a class="xref" data-target="SkyFishEnhancementSystem">SkyFishEnhancementSystem</a>, <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishGunManager">SkyFishGunManager</a>, <a class="xref" data-target="SkyFishItemRegistry">SkyFishItemRegistry</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a>, <a class="xref" data-target="SkyFishTitleRegistry">SkyFishTitleRegistry</a>, <a class="xref" data-target="WeatherManager">WeatherManager</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishBagGridCard">SkyFishBagGridCard</a>, <a class="xref" data-target="SkyFishEnhancementTransferUI">SkyFishEnhancementTransferUI</a>, <a class="xref" data-target="SkyFishForgeGemSelectUI">SkyFishForgeGemSelectUI</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>
       </td>
     </tr>
 
@@ -633,7 +241,19 @@
       <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishBagManager</b></td>
       <td class="purpose">Bag upgrade purchase manager handling tier progression, cost validation, and persistence sync.</td>
       <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishCurrencyUI">SkyFishCurrencyUI</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a><br> &larr; <a class="xref" data-target="SkyFishBagCard">SkyFishBagCard</a>
+         &rarr; <a class="xref" data-target="SkyFishBagCard">SkyFishBagCard</a>, <a class="xref" data-target="SkyFishCurrencyUI">SkyFishCurrencyUI</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishBagCard">SkyFishBagCard</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishBroadcastManager" data-cat="gameplay" id="row-SkyFishBroadcastManager">
+      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishBroadcastManager</b></td>
+      <td class="purpose">Network broadcast relay for world-wide rare catch and level-up announcements.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishAnnouncementHUD">SkyFishAnnouncementHUD</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>
       </td>
     </tr>
 
@@ -641,7 +261,136 @@
       <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishCard</b></td>
       <td class="purpose">Generic item card UI component for displaying item name, rarity color, icon, and stats.</td>
       <td class="wiring">
-        <br> &larr; <a class="xref" data-target="SkyFishInventoryUI">SkyFishInventoryUI</a>, <a class="xref" data-target="SkyFishSellUI">SkyFishSellUI</a>
+        
+        <br>
+         &larr; <a class="xref" data-target="SkyFishInventoryUI">SkyFishInventoryUI</a>, <a class="xref" data-target="SkyFishSellUI">SkyFishSellUI</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishCastController" data-cat="gameplay" id="row-SkyFishCastController">
+      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishCastController</b></td>
+      <td class="purpose">Harpoon cast input handler managing charge shot, Phase 1 trigger timing, and cancel logic.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishGunInfoPanel">SkyFishGunInfoPanel</a>, <a class="xref" data-target="SkyFishGunManager">SkyFishGunManager</a>, <a class="xref" data-target="SkyFishLineRenderer">SkyFishLineRenderer</a>, <a class="xref" data-target="SkyFishMinigame">SkyFishMinigame</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>
+        <br>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishCatchPacker" data-cat="gameplay" id="row-SkyFishCatchPacker">
+      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishCatchPacker</b></td>
+      <td class="purpose">Bit-packs fish catch data (species, size tier, rarity, mutations) into a single int for persistence.</td>
+      <td class="wiring">
+        
+        <br>
+         &larr; <a class="xref" data-target="SkyFishAchievements">SkyFishAchievements</a>, <a class="xref" data-target="SkyFishCollectorIManager">SkyFishCollectorIManager</a>, <a class="xref" data-target="SkyFishDailyQuests">SkyFishDailyQuests</a>, <a class="xref" data-target="SkyFishEchoGrant">SkyFishEchoGrant</a>, <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishInventoryUI">SkyFishInventoryUI</a>, <a class="xref" data-target="SkyFishSellUI">SkyFishSellUI</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishChestRewards" data-cat="gameplay" id="row-SkyFishChestRewards">
+      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishChestRewards</b></td>
+      <td class="purpose">Chest reward roll and grant logic for treasure chests captured during Phase 2 minigame.</td>
+      <td class="wiring">
+        
+        <br>
+         &larr; <a class="xref" data-target="SkyFishSpecialInventoryUI">SkyFishSpecialInventoryUI</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishCollectorICard" data-cat="ui" id="row-SkyFishCollectorICard">
+      <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishCollectorICard</b></td>
+      <td class="purpose">One species card in the Fish Collector I tracker — shows lock state, rarity color, and species silhouette.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishCollectorIManager">SkyFishCollectorIManager</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishCollectorIManager">SkyFishCollectorIManager</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishCollectorIManager" data-cat="ui" id="row-SkyFishCollectorIManager">
+      <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishCollectorIManager</b></td>
+      <td class="purpose">Unified Sky Journal manager driving both Collector I (species grid view) and Collector II (per-species size/mutation tracker).</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="FishZoneIndex">FishZoneIndex</a>, <a class="xref" data-target="SkyFishAnnouncementHUD">SkyFishAnnouncementHUD</a>, <a class="xref" data-target="SkyFishCatchPacker">SkyFishCatchPacker</a>, <a class="xref" data-target="SkyFishCollectorICard">SkyFishCollectorICard</a>, <a class="xref" data-target="SkyFishInventoryUI">SkyFishInventoryUI</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishCollectorICard">SkyFishCollectorICard</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishCurrencyUI" data-cat="hud" id="row-SkyFishCurrencyUI">
+      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishCurrencyUI</b></td>
+      <td class="purpose">Currency HUD display controller that syncs Sky Coin balance from persistence.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishAmmoVendorManager">SkyFishAmmoVendorManager</a>, <a class="xref" data-target="SkyFishBagManager">SkyFishBagManager</a>, <a class="xref" data-target="SkyFishDailyRewards">SkyFishDailyRewards</a>, <a class="xref" data-target="SkyFishEnhancementTransferUI">SkyFishEnhancementTransferUI</a>, <a class="xref" data-target="SkyFishForgeGemSelectUI">SkyFishForgeGemSelectUI</a>, <a class="xref" data-target="SkyFishGambleSlotMachine">SkyFishGambleSlotMachine</a>, <a class="xref" data-target="SkyFishGunVendorManager">SkyFishGunVendorManager</a>, <a class="xref" data-target="SkyFishLineVendorManager">SkyFishLineVendorManager</a>, <a class="xref" data-target="SkyFishSeekerVendorManager">SkyFishSeekerVendorManager</a>, <a class="xref" data-target="SkyFishSellUI">SkyFishSellUI</a>, <a class="xref" data-target="SkyFishSpecialInventoryUI">SkyFishSpecialInventoryUI</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishDailyQuestCard" data-cat="ui" id="row-SkyFishDailyQuestCard">
+      <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishDailyQuestCard</b></td>
+      <td class="purpose">One quest card in the Daily tab — pure display component driven by SkyFishDailyQuests.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishDailyQuests">SkyFishDailyQuests</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishDailyQuests">SkyFishDailyQuests</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishDailyQuests" data-cat="ui" id="row-SkyFishDailyQuests">
+      <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishDailyQuests</b></td>
+      <td class="purpose">Owns the daily quest system — parses skyfish_dailies.json, picks 10 deterministic quests per UTC day, and drives the quest cards.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishAnnouncementHUD">SkyFishAnnouncementHUD</a>, <a class="xref" data-target="SkyFishCatchPacker">SkyFishCatchPacker</a>, <a class="xref" data-target="SkyFishDailyQuestCard">SkyFishDailyQuestCard</a>, <a class="xref" data-target="SkyFishInventoryUI">SkyFishInventoryUI</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishDailyQuestCard">SkyFishDailyQuestCard</a>, <a class="xref" data-target="SkyFishOverviewUI">SkyFishOverviewUI</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishDailyRewardCard" data-cat="ui" id="row-SkyFishDailyRewardCard">
+      <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishDailyRewardCard</b></td>
+      <td class="purpose">UI component for one slot in the daily rewards window.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishDailyRewards">SkyFishDailyRewards</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishDailyRewards">SkyFishDailyRewards</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishDailyRewards" data-cat="ui" id="row-SkyFishDailyRewards">
+      <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishDailyRewards</b></td>
+      <td class="purpose">JSON-driven daily login rewards with server-time anti-cheat — tracks consecutive-day streak and grants tiered rewards.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishAnnouncementHUD">SkyFishAnnouncementHUD</a>, <a class="xref" data-target="SkyFishCurrencyUI">SkyFishCurrencyUI</a>, <a class="xref" data-target="SkyFishDailyRewardCard">SkyFishDailyRewardCard</a>, <a class="xref" data-target="SkyFishItemRegistry">SkyFishItemRegistry</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishDailyRewardCard">SkyFishDailyRewardCard</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishDebugPanel" data-cat="hud" id="row-SkyFishDebugPanel">
+      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishDebugPanel</b></td>
+      <td class="purpose">Inspector debug panel for testing time-of-day and weather combinations via toggleable logging.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyController">SkyController</a>, <a class="xref" data-target="WeatherManager">WeatherManager</a>
+        <br>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishDriftersTracker" data-cat="ui" id="row-SkyFishDriftersTracker">
+      <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishDriftersTracker</b></td>
+      <td class="purpose">Live Drifters panel showing all players in the instance with their distance from the local player, sorted closest-first.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishItemRegistry">SkyFishItemRegistry</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a>, <a class="xref" data-target="SkyFishSlotManager">SkyFishSlotManager</a>, <a class="xref" data-target="SkyFishTitleRegistry">SkyFishTitleRegistry</a>
+        <br>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishEchoGrant" data-cat="gameplay" id="row-SkyFishEchoGrant">
+      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishEchoGrant</b></td>
+      <td class="purpose">Echo (XP) grant and level-up system triggered after each fish catch and sell event.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishCatchPacker">SkyFishCatchPacker</a>, <a class="xref" data-target="SkyFishGlobalEvents">SkyFishGlobalEvents</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>
       </td>
     </tr>
 
@@ -649,31 +398,48 @@
       <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishEnhancementSystem</b></td>
       <td class="purpose">Equipment enhancement system managing Gem Enhancement Cracking rolls and stat bind application.</td>
       <td class="wiring">
-        <br> &larr; <a class="xref" data-target="SkyFishBagInventoryUI">SkyFishBagInventoryUI</a>, <a class="xref" data-target="SkyFishEnhancementTransferUI">SkyFishEnhancementTransferUI</a>, <a class="xref" data-target="SkyFishForgeController">SkyFishForgeController</a>, <a class="xref" data-target="SkyFishForgeCrackUI">SkyFishForgeCrackUI</a>, <a class="xref" data-target="SkyFishForgeGemSelectUI">SkyFishForgeGemSelectUI</a>
+        
+        <br>
+         &larr; <a class="xref" data-target="SkyFishBagInventoryUI">SkyFishBagInventoryUI</a>, <a class="xref" data-target="SkyFishEnhancementTransferUI">SkyFishEnhancementTransferUI</a>, <a class="xref" data-target="SkyFishForgeController">SkyFishForgeController</a>, <a class="xref" data-target="SkyFishForgeCrackUI">SkyFishForgeCrackUI</a>, <a class="xref" data-target="SkyFishForgeGemSelectUI">SkyFishForgeGemSelectUI</a>
       </td>
     </tr>
 
     <tr data-name="SkyFishEnhancementTransferUI" data-cat="ui" id="row-SkyFishEnhancementTransferUI">
       <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishEnhancementTransferUI</b></td>
-      <td class="purpose">central controller for the Enhancement Transfer console.</td>
+      <td class="purpose">Central controller for the Enhancement Transfer console.</td>
       <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishBagInventoryUI">SkyFishBagInventoryUI</a>, <a class="xref" data-target="SkyFishCurrencyUI">SkyFishCurrencyUI</a>, <a class="xref" data-target="SkyFishEnhancementSystem">SkyFishEnhancementSystem</a>, <a class="xref" data-target="SkyFishItemRegistry">SkyFishItemRegistry</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a><br> &larr; <a class="xref" data-target="SkyFishGunRowCard">SkyFishGunRowCard</a>
+         &rarr; <a class="xref" data-target="SkyFishBagInventoryUI">SkyFishBagInventoryUI</a>, <a class="xref" data-target="SkyFishCurrencyUI">SkyFishCurrencyUI</a>, <a class="xref" data-target="SkyFishEnhancementSystem">SkyFishEnhancementSystem</a>, <a class="xref" data-target="SkyFishGunRowCard">SkyFishGunRowCard</a>, <a class="xref" data-target="SkyFishItemRegistry">SkyFishItemRegistry</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishGunRowCard">SkyFishGunRowCard</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishForgeAmbience" data-cat="world" id="row-SkyFishForgeAmbience">
+      <td><span class="swatch" style="background:#4ad2a6"></span><b>SkyFishForgeAmbience</b></td>
+      <td class="purpose">Proximity-driven ambient audio loop that fades in when the local player approaches the forge.</td>
+      <td class="wiring">
+        
+        <br>
       </td>
     </tr>
 
     <tr data-name="SkyFishForgeController" data-cat="ui" id="row-SkyFishForgeController">
       <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishForgeController</b></td>
-      <td class="purpose">orchestrates the Gem Enhancement Cracking sequence.</td>
+      <td class="purpose">Orchestrates the Gem Enhancement Cracking sequence.</td>
       <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishEnhancementSystem">SkyFishEnhancementSystem</a>, <a class="xref" data-target="SkyFishForgeCrackUI">SkyFishForgeCrackUI</a>, <a class="xref" data-target="SkyFishForgeHammer">SkyFishForgeHammer</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a><br> &larr; <a class="xref" data-target="SkyFishForgeGemSelectUI">SkyFishForgeGemSelectUI</a>
+         &rarr; <a class="xref" data-target="SkyFishEnhancementSystem">SkyFishEnhancementSystem</a>, <a class="xref" data-target="SkyFishForgeCrackUI">SkyFishForgeCrackUI</a>, <a class="xref" data-target="SkyFishForgeHammer">SkyFishForgeHammer</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishForgeGemSelectUI">SkyFishForgeGemSelectUI</a>
       </td>
     </tr>
 
     <tr data-name="SkyFishForgeCrackUI" data-cat="ui" id="row-SkyFishForgeCrackUI">
       <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishForgeCrackUI</b></td>
-      <td class="purpose">drives the two-panel world-space canvas that shows the slot-machine cycle and the final reveal of a cracked enhancement name.</td>
+      <td class="purpose">Drives the two-panel world-space canvas showing the slot-machine cycle and final reveal of a cracked enhancement name.</td>
       <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishEnhancementSystem">SkyFishEnhancementSystem</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a><br> &larr; <a class="xref" data-target="SkyFishForgeController">SkyFishForgeController</a>
+         &rarr; <a class="xref" data-target="SkyFishEnhancementSystem">SkyFishEnhancementSystem</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishForgeController">SkyFishForgeController</a>
       </td>
     </tr>
 
@@ -681,23 +447,171 @@
       <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishForgeGemSelectUI</b></td>
       <td class="purpose">Gem selection + details panel for the forge.</td>
       <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishBagInventoryUI">SkyFishBagInventoryUI</a>, <a class="xref" data-target="SkyFishCurrencyUI">SkyFishCurrencyUI</a>, <a class="xref" data-target="SkyFishEnhancementSystem">SkyFishEnhancementSystem</a>, <a class="xref" data-target="SkyFishForgeController">SkyFishForgeController</a>, <a class="xref" data-target="SkyFishItemRegistry">SkyFishItemRegistry</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a>, <a class="xref" data-target="SkyFishSpecialInventoryUI">SkyFishSpecialInventoryUI</a><br> &larr; <a class="xref" data-target="SkyFishSpecialInventoryUI">SkyFishSpecialInventoryUI</a>
+         &rarr; <a class="xref" data-target="SkyFishBagInventoryUI">SkyFishBagInventoryUI</a>, <a class="xref" data-target="SkyFishCurrencyUI">SkyFishCurrencyUI</a>, <a class="xref" data-target="SkyFishEnhancementSystem">SkyFishEnhancementSystem</a>, <a class="xref" data-target="SkyFishForgeController">SkyFishForgeController</a>, <a class="xref" data-target="SkyFishItemRegistry">SkyFishItemRegistry</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a>, <a class="xref" data-target="SkyFishSpecialInventoryUI">SkyFishSpecialInventoryUI</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishSpecialInventoryUI">SkyFishSpecialInventoryUI</a>
       </td>
     </tr>
 
     <tr data-name="SkyFishForgeHammer" data-cat="ui" id="row-SkyFishForgeHammer">
       <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishForgeHammer</b></td>
-      <td class="purpose">drives the hammer cylinder animation, audio, and optional emissive rune / light shaft effects during a Gem Enhancement Crack.</td>
+      <td class="purpose">Drives the hammer cylinder animation, audio, and emissive rune / light shaft effects during a Gem Enhancement Crack.</td>
       <td class="wiring">
-        <br> &larr; <a class="xref" data-target="SkyFishForgeController">SkyFishForgeController</a>
+        
+        <br>
+         &larr; <a class="xref" data-target="SkyFishForgeController">SkyFishForgeController</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishGambleSlotMachine" data-cat="ui" id="row-SkyFishGambleSlotMachine">
+      <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishGambleSlotMachine</b></td>
+      <td class="purpose">Sky Pearl Pocket Void slot-machine UI — player spends Sky Pearls to spin a 3×3 reel grid for SC payouts.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishCurrencyUI">SkyFishCurrencyUI</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>
+        <br>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishGameManager" data-cat="gameplay" id="row-SkyFishGameManager">
+      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishGameManager</b></td>
+      <td class="purpose">Master state machine for the SkyFish harpoon fishing system from cast to catch storage.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="FishZoneIndex">FishZoneIndex</a>, <a class="xref" data-target="SkyFishBroadcastManager">SkyFishBroadcastManager</a>, <a class="xref" data-target="SkyFishCatchPacker">SkyFishCatchPacker</a>, <a class="xref" data-target="SkyFishEchoGrant">SkyFishEchoGrant</a>, <a class="xref" data-target="SkyFishGunInfoPanel">SkyFishGunInfoPanel</a>, <a class="xref" data-target="SkyFishGunManager">SkyFishGunManager</a>, <a class="xref" data-target="SkyFishLineRenderer">SkyFishLineRenderer</a>, <a class="xref" data-target="SkyFishMaterialLibrary">SkyFishMaterialLibrary</a>, <a class="xref" data-target="SkyFishMinigame">SkyFishMinigame</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a>, <a class="xref" data-target="SkyFishRarityVFX">SkyFishRarityVFX</a>, <a class="xref" data-target="SkyFishUIPositioner">SkyFishUIPositioner</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishBagInventoryUI">SkyFishBagInventoryUI</a>, <a class="xref" data-target="SkyFishCastController">SkyFishCastController</a>, <a class="xref" data-target="SkyFishGrappleSystem">SkyFishGrappleSystem</a>, <a class="xref" data-target="SkyFishGunManager">SkyFishGunManager</a>, <a class="xref" data-target="SkyFishMinigame">SkyFishMinigame</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>, <a class="xref" data-target="SkyFishZoneTrigger">SkyFishZoneTrigger</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishGlobalEvents" data-cat="network" id="row-SkyFishGlobalEvents">
+      <td><span class="swatch" style="background:#ffa94d"></span><b>SkyFishGlobalEvents</b></td>
+      <td class="purpose">Master-synced manager for ultra-rare global events that aren&#x27;t part of the standard weather cycle (Blood Moon, Laser Storm, etc.).</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishAnnouncementHUD">SkyFishAnnouncementHUD</a>, <a class="xref" data-target="WeatherManager">WeatherManager</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyController">SkyController</a>, <a class="xref" data-target="SkyFishEchoGrant">SkyFishEchoGrant</a>, <a class="xref" data-target="SkyFishMusicController">SkyFishMusicController</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishGrappleAxisInput" data-cat="gameplay" id="row-SkyFishGrappleAxisInput">
+      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishGrappleAxisInput</b></td>
+      <td class="purpose">Reads a Unity Input axis and feeds analog input to SkyFishGrappleController.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishGrappleController">SkyFishGrappleController</a>
+        <br>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishGrappleButtonInput" data-cat="gameplay" id="row-SkyFishGrappleButtonInput">
+      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishGrappleButtonInput</b></td>
+      <td class="purpose">Reads a Unity Input button and feeds binary 0/1 input to SkyFishGrappleController.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishGrappleController">SkyFishGrappleController</a>
+        <br>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishGrappleController" data-cat="gameplay" id="row-SkyFishGrappleController">
+      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishGrappleController</b></td>
+      <td class="purpose">Player tether/grapple physics — handles raycast attach, swing-on-sphere projection, winch-mode pull-in, and reel-in/reel-out.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishGrappleProperties">SkyFishGrappleProperties</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishGrappleAxisInput">SkyFishGrappleAxisInput</a>, <a class="xref" data-target="SkyFishGrappleButtonInput">SkyFishGrappleButtonInput</a>, <a class="xref" data-target="SkyFishGrappleLineRenderer">SkyFishGrappleLineRenderer</a>, <a class="xref" data-target="SkyFishGrapplePickupInput">SkyFishGrapplePickupInput</a>, <a class="xref" data-target="SkyFishGrappleSystem">SkyFishGrappleSystem</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishGrappleLineRenderer" data-cat="gameplay" id="row-SkyFishGrappleLineRenderer">
+      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishGrappleLineRenderer</b></td>
+      <td class="purpose">Dedicated rope + hook visual for SkyFishGrappleSystem.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishGrappleController">SkyFishGrappleController</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishGrappleSystem">SkyFishGrappleSystem</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishGrapplePickupInput" data-cat="gameplay" id="row-SkyFishGrapplePickupInput">
+      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishGrapplePickupInput</b></td>
+      <td class="purpose">Pickup-based input source for SkyFishGrappleController.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishGrappleController">SkyFishGrappleController</a>
+        <br>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishGrappleProperties" data-cat="gameplay" id="row-SkyFishGrappleProperties">
+      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishGrappleProperties</b></td>
+      <td class="purpose">Tunable physics + detection + input properties for SkyFishGrappleController.</td>
+      <td class="wiring">
+        
+        <br>
+         &larr; <a class="xref" data-target="SkyFishGrappleController">SkyFishGrappleController</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishGrappleSystem" data-cat="gameplay" id="row-SkyFishGrappleSystem">
+      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishGrappleSystem</b></td>
+      <td class="purpose">Orchestrates SkyFishGrappleController for the grapple-bolt loadout — gates on equipped/unlocked, drives trigger and reel inputs, manages STATE_GRAPPLING.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishGrappleController">SkyFishGrappleController</a>, <a class="xref" data-target="SkyFishGrappleLineRenderer">SkyFishGrappleLineRenderer</a>, <a class="xref" data-target="SkyFishGunInfoPanel">SkyFishGunInfoPanel</a>, <a class="xref" data-target="SkyFishGunManager">SkyFishGunManager</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>
+        <br>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishGrappleToggleButton" data-cat="gameplay" id="row-SkyFishGrappleToggleButton">
+      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishGrappleToggleButton</b></td>
+      <td class="purpose">Companion script for any UI button that toggles the scene-wide grapple mode flag on SkyFishPersistence.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>
+        <br>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishGrappleTutorialPickup" data-cat="gameplay" id="row-SkyFishGrappleTutorialPickup">
+      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishGrappleTutorialPickup</b></td>
+      <td class="purpose">Static interactable that unlocks the grapple bolt for the local player.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishAnnouncementHUD">SkyFishAnnouncementHUD</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>
+        <br>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishGunInfoPanel" data-cat="hud" id="row-SkyFishGunInfoPanel">
+      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishGunInfoPanel</b></td>
+      <td class="purpose">On-gun info panel for displaying flash warnings and ammo status to the local player.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishItemRegistry">SkyFishItemRegistry</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishCastController">SkyFishCastController</a>, <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishGrappleSystem">SkyFishGrappleSystem</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishGunManager" data-cat="hud" id="row-SkyFishGunManager">
+      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishGunManager</b></td>
+      <td class="purpose">Gun loadout manager tracking equipped dart, bolt, and bag and pushing stats to game systems.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishLineRenderer">SkyFishLineRenderer</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishBagInventoryUI">SkyFishBagInventoryUI</a>, <a class="xref" data-target="SkyFishCastController">SkyFishCastController</a>, <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishGrappleSystem">SkyFishGrappleSystem</a>, <a class="xref" data-target="SkyFishGunSpawner">SkyFishGunSpawner</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>
       </td>
     </tr>
 
     <tr data-name="SkyFishGunRowCard" data-cat="ui" id="row-SkyFishGunRowCard">
       <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishGunRowCard</b></td>
-      <td class="purpose">one gun row in the source or dest popup scroll list.</td>
+      <td class="purpose">One gun row in the Enhancement Transfer source/dest popup scroll list.</td>
       <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishEnhancementTransferUI">SkyFishEnhancementTransferUI</a><br>
+         &rarr; <a class="xref" data-target="SkyFishEnhancementTransferUI">SkyFishEnhancementTransferUI</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishEnhancementTransferUI">SkyFishEnhancementTransferUI</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishGunSpawner" data-cat="hud" id="row-SkyFishGunSpawner">
+      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishGunSpawner</b></td>
+      <td class="purpose">Spawns and assigns the player&#x27;s equipped harpoon gun prefab on join and loadout change.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishGunManager">SkyFishGunManager</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>
+        <br>
       </td>
     </tr>
 
@@ -705,7 +619,9 @@
       <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishGunVendorCard</b></td>
       <td class="purpose">Gun vendor UI card displaying dart or bag item name, stats, and purchase/equip buttons.</td>
       <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishGunVendorManager">SkyFishGunVendorManager</a><br>
+         &rarr; <a class="xref" data-target="SkyFishGunVendorManager">SkyFishGunVendorManager</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishGunVendorManager">SkyFishGunVendorManager</a>
       </td>
     </tr>
 
@@ -713,7 +629,9 @@
       <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishGunVendorManager</b></td>
       <td class="purpose">Gun vendor purchase and equip logic for dart and bag items with persistence sync.</td>
       <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishCurrencyUI">SkyFishCurrencyUI</a>, <a class="xref" data-target="SkyFishItemRegistry">SkyFishItemRegistry</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a><br> &larr; <a class="xref" data-target="SkyFishGunVendorCard">SkyFishGunVendorCard</a>
+         &rarr; <a class="xref" data-target="SkyFishCurrencyUI">SkyFishCurrencyUI</a>, <a class="xref" data-target="SkyFishGunVendorCard">SkyFishGunVendorCard</a>, <a class="xref" data-target="SkyFishItemRegistry">SkyFishItemRegistry</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishGunVendorCard">SkyFishGunVendorCard</a>
       </td>
     </tr>
 
@@ -721,7 +639,19 @@
       <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishInventoryUI</b></td>
       <td class="purpose">Inventory UI controller for the legacy item list, managing display refresh and slot selection.</td>
       <td class="wiring">
-         &rarr; <a class="xref" data-target="FishZoneIndex">FishZoneIndex</a>, <a class="xref" data-target="SkyFishCard">SkyFishCard</a>, <a class="xref" data-target="SkyFishCatchPacker">SkyFishCatchPacker</a>, <a class="xref" data-target="SkyFishLargeCard">SkyFishLargeCard</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishSellUI">SkyFishSellUI</a>, <a class="xref" data-target="SkyFishSlotManager">SkyFishSlotManager</a><br> &larr; <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishSellUI">SkyFishSellUI</a>
+         &rarr; <a class="xref" data-target="FishZoneIndex">FishZoneIndex</a>, <a class="xref" data-target="SkyFishCard">SkyFishCard</a>, <a class="xref" data-target="SkyFishCatchPacker">SkyFishCatchPacker</a>, <a class="xref" data-target="SkyFishLargeCard">SkyFishLargeCard</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishSellUI">SkyFishSellUI</a>, <a class="xref" data-target="SkyFishSlotManager">SkyFishSlotManager</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishAchievements">SkyFishAchievements</a>, <a class="xref" data-target="SkyFishCollectorIManager">SkyFishCollectorIManager</a>, <a class="xref" data-target="SkyFishDailyQuests">SkyFishDailyQuests</a>, <a class="xref" data-target="SkyFishMenuSpawner">SkyFishMenuSpawner</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishSellUI">SkyFishSellUI</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishItemRegistry" data-cat="data" id="row-SkyFishItemRegistry">
+      <td><span class="swatch" style="background:#4aa3ff"></span><b>SkyFishItemRegistry</b></td>
+      <td class="purpose">JSON-loaded item registry providing names, sprites, stats, rarity, and condition labels for all item categories.</td>
+      <td class="wiring">
+        
+        <br>
+         &larr; <a class="xref" data-target="SkyFishAmmoVendorManager">SkyFishAmmoVendorManager</a>, <a class="xref" data-target="SkyFishBagInventoryUI">SkyFishBagInventoryUI</a>, <a class="xref" data-target="SkyFishDailyRewards">SkyFishDailyRewards</a>, <a class="xref" data-target="SkyFishDriftersTracker">SkyFishDriftersTracker</a>, <a class="xref" data-target="SkyFishEnhancementTransferUI">SkyFishEnhancementTransferUI</a>, <a class="xref" data-target="SkyFishForgeGemSelectUI">SkyFishForgeGemSelectUI</a>, <a class="xref" data-target="SkyFishGunInfoPanel">SkyFishGunInfoPanel</a>, <a class="xref" data-target="SkyFishGunVendorManager">SkyFishGunVendorManager</a>, <a class="xref" data-target="SkyFishLineVendorManager">SkyFishLineVendorManager</a>, <a class="xref" data-target="SkyFishNameplate">SkyFishNameplate</a>, <a class="xref" data-target="SkyFishOverviewUI">SkyFishOverviewUI</a>, <a class="xref" data-target="SkyFishSeekerVendorManager">SkyFishSeekerVendorManager</a>
       </td>
     </tr>
 
@@ -729,7 +659,213 @@
       <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishLargeCard</b></td>
       <td class="purpose">Large item detail card showing full stats block, icon, rarity header, and condition label.</td>
       <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishMaterialLibrary">SkyFishMaterialLibrary</a><br> &larr; <a class="xref" data-target="SkyFishInventoryUI">SkyFishInventoryUI</a>
+         &rarr; <a class="xref" data-target="SkyFishMaterialLibrary">SkyFishMaterialLibrary</a>, <a class="xref" data-target="SkyFishRarityVFX">SkyFishRarityVFX</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishInventoryUI">SkyFishInventoryUI</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishLineRenderer" data-cat="gameplay" id="row-SkyFishLineRenderer">
+      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishLineRenderer</b></td>
+      <td class="purpose">Harpoon line renderer managing cast arc, bolt flight, catch drag, and UI anchor transform.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishCastController">SkyFishCastController</a>, <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishGunManager">SkyFishGunManager</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishLineVendorCard" data-cat="ui" id="row-SkyFishLineVendorCard">
+      <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishLineVendorCard</b></td>
+      <td class="purpose">Line vendor UI card displaying name, stats, color swatch, stock, and purchase button for one line type.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishLineVendorManager">SkyFishLineVendorManager</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishLineVendorManager">SkyFishLineVendorManager</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishLineVendorManager" data-cat="ui" id="row-SkyFishLineVendorManager">
+      <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishLineVendorManager</b></td>
+      <td class="purpose">Line vendor purchase manager handling stock, pricing, and persistence sync for the 20 line types.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishCurrencyUI">SkyFishCurrencyUI</a>, <a class="xref" data-target="SkyFishItemRegistry">SkyFishItemRegistry</a>, <a class="xref" data-target="SkyFishLineVendorCard">SkyFishLineVendorCard</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishLineVendorCard">SkyFishLineVendorCard</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishMarketLock" data-cat="world" id="row-SkyFishMarketLock">
+      <td><span class="swatch" style="background:#4ad2a6"></span><b>SkyFishMarketLock</b></td>
+      <td class="purpose">Market area entry lock that restricts access until the player meets a minimum level requirement.</td>
+      <td class="wiring">
+        
+        <br>
+         &larr; <a class="xref" data-target="SkyFishMarketTeleporter">SkyFishMarketTeleporter</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishMarketTeleporter" data-cat="world" id="row-SkyFishMarketTeleporter">
+      <td><span class="swatch" style="background:#4ad2a6"></span><b>SkyFishMarketTeleporter</b></td>
+      <td class="purpose">Teleports the local player to the fish market zone on button press.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishMarketLock">SkyFishMarketLock</a>, <a class="xref" data-target="SkyFishMenuSpawner">SkyFishMenuSpawner</a>, <a class="xref" data-target="SkyFishPageManager">SkyFishPageManager</a>, <a class="xref" data-target="SkyFishSellUI">SkyFishSellUI</a>, <a class="xref" data-target="VulpariDialog">VulpariDialog</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishMenuSpawner">SkyFishMenuSpawner</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishMaterialLibrary" data-cat="data" id="row-SkyFishMaterialLibrary">
+      <td><span class="swatch" style="background:#4aa3ff"></span><b>SkyFishMaterialLibrary</b></td>
+      <td class="purpose">Material library providing shader mutation materials indexed by mutation ID for fish model application.</td>
+      <td class="wiring">
+        
+        <br>
+         &larr; <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishLargeCard">SkyFishLargeCard</a>, <a class="xref" data-target="SkyFishShowOffPickup">SkyFishShowOffPickup</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishMenuSpawner" data-cat="hud" id="row-SkyFishMenuSpawner">
+      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishMenuSpawner</b></td>
+      <td class="purpose">Spawns and positions the player&#x27;s wrist menu UI on join and avatar change.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishInventoryUI">SkyFishInventoryUI</a>, <a class="xref" data-target="SkyFishMarketTeleporter">SkyFishMarketTeleporter</a>, <a class="xref" data-target="SkyFishPageManager">SkyFishPageManager</a>, <a class="xref" data-target="SkyFishSlotManager">SkyFishSlotManager</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishMarketTeleporter">SkyFishMarketTeleporter</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishMinigame" data-cat="gameplay" id="row-SkyFishMinigame">
+      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishMinigame</b></td>
+      <td class="purpose">Two-phase bite minigame controller managing ring precision UI (Phase 1) and bar fill catch (Phase 2).</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>, <a class="xref" data-target="SkyFishUIPositioner">SkyFishUIPositioner</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishCastController">SkyFishCastController</a>, <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishMusicController" data-cat="world" id="row-SkyFishMusicController">
+      <td><span class="swatch" style="background:#4ad2a6"></span><b>SkyFishMusicController</b></td>
+      <td class="purpose">Local music brain that picks the right track based on a priority ladder and crossfades between tracks using two AudioSources.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishGlobalEvents">SkyFishGlobalEvents</a>, <a class="xref" data-target="WeatherManager">WeatherManager</a>
+        <br>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishMutationBackgrounds" data-cat="data" id="row-SkyFishMutationBackgrounds">
+      <td><span class="swatch" style="background:#4aa3ff"></span><b>SkyFishMutationBackgrounds</b></td>
+      <td class="purpose">Mutation background image library providing per-mutation backdrop sprites for item cards.</td>
+      <td class="wiring">
+        
+        <br>
+         &larr; <a class="xref" data-target="SkyFishSellUI">SkyFishSellUI</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishNameplate" data-cat="hud" id="row-SkyFishNameplate">
+      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishNameplate</b></td>
+      <td class="purpose">Player nameplate UI that displays display name and level above the player&#x27;s head.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishItemRegistry">SkyFishItemRegistry</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a>, <a class="xref" data-target="SkyFishTitleRegistry">SkyFishTitleRegistry</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishNetworkSync" data-cat="network" id="row-SkyFishNetworkSync">
+      <td><span class="swatch" style="background:#ffa94d"></span><b>SkyFishNetworkSync</b></td>
+      <td class="purpose">Network state sync relay broadcasting fishing events, catch results, and rare catches to all clients.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishBagInventoryUI">SkyFishBagInventoryUI</a>, <a class="xref" data-target="SkyFishBroadcastManager">SkyFishBroadcastManager</a>, <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishGrappleLineRenderer">SkyFishGrappleLineRenderer</a>, <a class="xref" data-target="SkyFishGunManager">SkyFishGunManager</a>, <a class="xref" data-target="SkyFishLineRenderer">SkyFishLineRenderer</a>, <a class="xref" data-target="SkyFishNameplate">SkyFishNameplate</a>, <a class="xref" data-target="SkyFishRarityVFX">SkyFishRarityVFX</a>, <a class="xref" data-target="SkyFishShowOffPickup">SkyFishShowOffPickup</a>, <a class="xref" data-target="SkyFishSlotManager">SkyFishSlotManager</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishCastController">SkyFishCastController</a>, <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishGrappleSystem">SkyFishGrappleSystem</a>, <a class="xref" data-target="SkyFishGunManager">SkyFishGunManager</a>, <a class="xref" data-target="SkyFishGunSpawner">SkyFishGunSpawner</a>, <a class="xref" data-target="SkyFishMinigame">SkyFishMinigame</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishShowOffPickup">SkyFishShowOffPickup</a>, <a class="xref" data-target="SkyFishSlotManager">SkyFishSlotManager</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishOverviewUI" data-cat="hud" id="row-SkyFishOverviewUI">
+      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishOverviewUI</b></td>
+      <td class="purpose">Overview stats panel showing lifetime catches, species count, level, and currency totals.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishAchievements">SkyFishAchievements</a>, <a class="xref" data-target="SkyFishDailyQuests">SkyFishDailyQuests</a>, <a class="xref" data-target="SkyFishItemRegistry">SkyFishItemRegistry</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a>, <a class="xref" data-target="SkyFishTitleRegistry">SkyFishTitleRegistry</a>
+        <br>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishPageManager" data-cat="hud" id="row-SkyFishPageManager">
+      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishPageManager</b></td>
+      <td class="purpose">Multi-page UI controller for the main HUD panel managing tab navigation and page activation.</td>
+      <td class="wiring">
+        
+        <br>
+         &larr; <a class="xref" data-target="SkyFishMarketTeleporter">SkyFishMarketTeleporter</a>, <a class="xref" data-target="SkyFishMenuSpawner">SkyFishMenuSpawner</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishPatreonUnlock" data-cat="hud" id="row-SkyFishPatreonUnlock">
+      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishPatreonUnlock</b></td>
+      <td class="purpose">Patreon supporter reward system unlocking exclusive cosmetics based on persistent unlock flags.</td>
+      <td class="wiring">
+        
+        <br>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishPersistence" data-cat="data" id="row-SkyFishPersistence">
+      <td><span class="swatch" style="background:#4aa3ff"></span><b>SkyFishPersistence</b></td>
+      <td class="purpose">VRC Persistence backend storing all player progression — inventory, currency, bolts, and catch records.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishAnnouncementHUD">SkyFishAnnouncementHUD</a>, <a class="xref" data-target="SkyFishInventoryUI">SkyFishInventoryUI</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishAchievements">SkyFishAchievements</a>, <a class="xref" data-target="SkyFishAmmoVendorManager">SkyFishAmmoVendorManager</a>, <a class="xref" data-target="SkyFishBagInventoryUI">SkyFishBagInventoryUI</a>, <a class="xref" data-target="SkyFishBagManager">SkyFishBagManager</a>, <a class="xref" data-target="SkyFishCastController">SkyFishCastController</a>, <a class="xref" data-target="SkyFishCollectorIManager">SkyFishCollectorIManager</a>, <a class="xref" data-target="SkyFishCurrencyUI">SkyFishCurrencyUI</a>, <a class="xref" data-target="SkyFishDailyQuests">SkyFishDailyQuests</a>, <a class="xref" data-target="SkyFishDailyRewards">SkyFishDailyRewards</a>, <a class="xref" data-target="SkyFishDriftersTracker">SkyFishDriftersTracker</a>, <a class="xref" data-target="SkyFishEchoGrant">SkyFishEchoGrant</a>, <a class="xref" data-target="SkyFishEnhancementTransferUI">SkyFishEnhancementTransferUI</a>, <a class="xref" data-target="SkyFishForgeGemSelectUI">SkyFishForgeGemSelectUI</a>, <a class="xref" data-target="SkyFishGambleSlotMachine">SkyFishGambleSlotMachine</a>, <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishGrappleSystem">SkyFishGrappleSystem</a>, <a class="xref" data-target="SkyFishGrappleToggleButton">SkyFishGrappleToggleButton</a>, <a class="xref" data-target="SkyFishGrappleTutorialPickup">SkyFishGrappleTutorialPickup</a>, <a class="xref" data-target="SkyFishGunInfoPanel">SkyFishGunInfoPanel</a>, <a class="xref" data-target="SkyFishGunManager">SkyFishGunManager</a>, <a class="xref" data-target="SkyFishGunSpawner">SkyFishGunSpawner</a>, <a class="xref" data-target="SkyFishGunVendorManager">SkyFishGunVendorManager</a>, <a class="xref" data-target="SkyFishInventoryUI">SkyFishInventoryUI</a>, <a class="xref" data-target="SkyFishLineRenderer">SkyFishLineRenderer</a>, <a class="xref" data-target="SkyFishLineVendorManager">SkyFishLineVendorManager</a>, <a class="xref" data-target="SkyFishOverviewUI">SkyFishOverviewUI</a>, <a class="xref" data-target="SkyFishPlayerHUD">SkyFishPlayerHUD</a>, <a class="xref" data-target="SkyFishSeekerVendorManager">SkyFishSeekerVendorManager</a>, <a class="xref" data-target="SkyFishSellUI">SkyFishSellUI</a>, <a class="xref" data-target="SkyFishSpecialInventoryUI">SkyFishSpecialInventoryUI</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishPlayerHUD" data-cat="hud" id="row-SkyFishPlayerHUD">
+      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishPlayerHUD</b></td>
+      <td class="purpose">Player heads-up display controller syncing level, currency, and active zone to the HUD UI.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="WeatherManager">WeatherManager</a>
+        <br>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishRainCollision" data-cat="world" id="row-SkyFishRainCollision">
+      <td><span class="swatch" style="background:#4ad2a6"></span><b>SkyFishRainCollision</b></td>
+      <td class="purpose">VRChat-compatible port of Digital Ruby&#x27;s RainCollision — drives splash particles where rain hits surfaces.</td>
+      <td class="wiring">
+        
+        <br>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishRainController" data-cat="world" id="row-SkyFishRainController">
+      <td><span class="swatch" style="background:#4ad2a6"></span><b>SkyFishRainController</b></td>
+      <td class="purpose">VRChat-compatible port of Digital Ruby&#x27;s RainScript — drives the Rain Maker prefab&#x27;s particle systems and audio from weather state.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="WeatherManager">WeatherManager</a>
+        <br>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishRaritySystem" data-cat="gameplay" id="row-SkyFishRaritySystem">
+      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishRaritySystem</b></td>
+      <td class="purpose">Rarity tier roller and data provider for rarity names, colors, mutation rolls, and size bell curves.</td>
+      <td class="wiring">
+        
+        <br>
+         &larr; <a class="xref" data-target="SkyFishAchievements">SkyFishAchievements</a>, <a class="xref" data-target="SkyFishAmmoVendorManager">SkyFishAmmoVendorManager</a>, <a class="xref" data-target="SkyFishAnnouncementHUD">SkyFishAnnouncementHUD</a>, <a class="xref" data-target="SkyFishBagInventoryUI">SkyFishBagInventoryUI</a>, <a class="xref" data-target="SkyFishCollectorIManager">SkyFishCollectorIManager</a>, <a class="xref" data-target="SkyFishDailyQuests">SkyFishDailyQuests</a>, <a class="xref" data-target="SkyFishDriftersTracker">SkyFishDriftersTracker</a>, <a class="xref" data-target="SkyFishEnhancementTransferUI">SkyFishEnhancementTransferUI</a>, <a class="xref" data-target="SkyFishForgeController">SkyFishForgeController</a>, <a class="xref" data-target="SkyFishForgeCrackUI">SkyFishForgeCrackUI</a>, <a class="xref" data-target="SkyFishForgeGemSelectUI">SkyFishForgeGemSelectUI</a>, <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishGunVendorManager">SkyFishGunVendorManager</a>, <a class="xref" data-target="SkyFishLineVendorManager">SkyFishLineVendorManager</a>, <a class="xref" data-target="SkyFishNameplate">SkyFishNameplate</a>, <a class="xref" data-target="SkyFishOverviewUI">SkyFishOverviewUI</a>, <a class="xref" data-target="SkyFishSeekerVendorManager">SkyFishSeekerVendorManager</a>, <a class="xref" data-target="SkyFishSpecialInventoryUI">SkyFishSpecialInventoryUI</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishRarityVFX" data-cat="gameplay" id="row-SkyFishRarityVFX">
+      <td><span class="swatch" style="background:#ff6b6b"></span><b>SkyFishRarityVFX</b></td>
+      <td class="purpose">Spawns a per-rarity VFX prefab (particle + shader aura) on caught fish models, indexed 0–9 by rarity tier.</td>
+      <td class="wiring">
+        
+        <br>
+         &larr; <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishLargeCard">SkyFishLargeCard</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>, <a class="xref" data-target="SkyFishShowOffPickup">SkyFishShowOffPickup</a>
       </td>
     </tr>
 
@@ -737,7 +873,9 @@
       <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishSeekerVendorCard</b></td>
       <td class="purpose">Seeker item vendor UI card displaying name, stats, stock, and purchase button for one seeker type.</td>
       <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishSeekerVendorManager">SkyFishSeekerVendorManager</a><br>
+         &rarr; <a class="xref" data-target="SkyFishSeekerVendorManager">SkyFishSeekerVendorManager</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishSeekerVendorManager">SkyFishSeekerVendorManager</a>
       </td>
     </tr>
 
@@ -745,7 +883,9 @@
       <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishSeekerVendorManager</b></td>
       <td class="purpose">Seeker vendor purchase manager handling stock, pricing, and persistence sync for seeker items.</td>
       <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishCurrencyUI">SkyFishCurrencyUI</a>, <a class="xref" data-target="SkyFishItemRegistry">SkyFishItemRegistry</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a><br> &larr; <a class="xref" data-target="SkyFishSeekerVendorCard">SkyFishSeekerVendorCard</a>
+         &rarr; <a class="xref" data-target="SkyFishCurrencyUI">SkyFishCurrencyUI</a>, <a class="xref" data-target="SkyFishItemRegistry">SkyFishItemRegistry</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a>, <a class="xref" data-target="SkyFishSeekerVendorCard">SkyFishSeekerVendorCard</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishSeekerVendorCard">SkyFishSeekerVendorCard</a>
       </td>
     </tr>
 
@@ -753,7 +893,9 @@
       <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishSellUI</b></td>
       <td class="purpose">Fish sell panel controller managing catch selection, value display, and sell confirmation.</td>
       <td class="wiring">
-         &rarr; <a class="xref" data-target="FishZoneIndex">FishZoneIndex</a>, <a class="xref" data-target="SkyFishCard">SkyFishCard</a>, <a class="xref" data-target="SkyFishCatchPacker">SkyFishCatchPacker</a>, <a class="xref" data-target="SkyFishCurrencyUI">SkyFishCurrencyUI</a>, <a class="xref" data-target="SkyFishInventoryUI">SkyFishInventoryUI</a>, <a class="xref" data-target="SkyFishMutationBackgrounds">SkyFishMutationBackgrounds</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishSellerCard">SkyFishSellerCard</a><br> &larr; <a class="xref" data-target="SkyFishInventoryUI">SkyFishInventoryUI</a>, <a class="xref" data-target="SkyFishMarketTeleporter">SkyFishMarketTeleporter</a>
+         &rarr; <a class="xref" data-target="FishZoneIndex">FishZoneIndex</a>, <a class="xref" data-target="SkyFishCard">SkyFishCard</a>, <a class="xref" data-target="SkyFishCatchPacker">SkyFishCatchPacker</a>, <a class="xref" data-target="SkyFishCurrencyUI">SkyFishCurrencyUI</a>, <a class="xref" data-target="SkyFishInventoryUI">SkyFishInventoryUI</a>, <a class="xref" data-target="SkyFishMutationBackgrounds">SkyFishMutationBackgrounds</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishSellerCard">SkyFishSellerCard</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishInventoryUI">SkyFishInventoryUI</a>, <a class="xref" data-target="SkyFishMarketTeleporter">SkyFishMarketTeleporter</a>
       </td>
     </tr>
 
@@ -761,15 +903,39 @@
       <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishSellerCard</b></td>
       <td class="purpose">Individual catch card in the sell panel showing fish name, rarity, size, and sell value.</td>
       <td class="wiring">
-        <br> &larr; <a class="xref" data-target="SkyFishSellUI">SkyFishSellUI</a>
+        
+        <br>
+         &larr; <a class="xref" data-target="SkyFishSellUI">SkyFishSellUI</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishShowOffPickup" data-cat="hud" id="row-SkyFishShowOffPickup">
+      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishShowOffPickup</b></td>
+      <td class="purpose">Pickup behaviour for the show-off display stand allowing players to place and retrieve caught fish.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishMaterialLibrary">SkyFishMaterialLibrary</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>, <a class="xref" data-target="SkyFishRarityVFX">SkyFishRarityVFX</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishSlotManager" data-cat="network" id="row-SkyFishSlotManager">
+      <td><span class="swatch" style="background:#ffa94d"></span><b>SkyFishSlotManager</b></td>
+      <td class="purpose">Slot ownership manager assigning fishing system slots to players on join and release.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishDriftersTracker">SkyFishDriftersTracker</a>, <a class="xref" data-target="SkyFishInventoryUI">SkyFishInventoryUI</a>, <a class="xref" data-target="SkyFishMenuSpawner">SkyFishMenuSpawner</a>, <a class="xref" data-target="SkyFishNetworkSync">SkyFishNetworkSync</a>
       </td>
     </tr>
 
     <tr data-name="SkyFishSpecialInventoryUI" data-cat="ui" id="row-SkyFishSpecialInventoryUI">
       <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishSpecialInventoryUI</b></td>
-      <td class="purpose">drives the Special Inventory tab AND the chest-opening choreography.</td>
+      <td class="purpose">Drives the Special Inventory tab and the chest-opening choreography.</td>
       <td class="wiring">
-         &rarr; <a class="xref" data-target="SkyFishChestRewards">SkyFishChestRewards</a>, <a class="xref" data-target="SkyFishCurrencyUI">SkyFishCurrencyUI</a>, <a class="xref" data-target="SkyFishForgeGemSelectUI">SkyFishForgeGemSelectUI</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a>, <a class="xref" data-target="SkyFishSpecialItemCard">SkyFishSpecialItemCard</a><br> &larr; <a class="xref" data-target="SkyFishForgeGemSelectUI">SkyFishForgeGemSelectUI</a>
+         &rarr; <a class="xref" data-target="SkyFishChestRewards">SkyFishChestRewards</a>, <a class="xref" data-target="SkyFishCurrencyUI">SkyFishCurrencyUI</a>, <a class="xref" data-target="SkyFishForgeGemSelectUI">SkyFishForgeGemSelectUI</a>, <a class="xref" data-target="SkyFishPersistence">SkyFishPersistence</a>, <a class="xref" data-target="SkyFishRaritySystem">SkyFishRaritySystem</a>, <a class="xref" data-target="SkyFishSpecialItemCard">SkyFishSpecialItemCard</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishForgeGemSelectUI">SkyFishForgeGemSelectUI</a>, <a class="xref" data-target="SkyFishSpecialItemCard">SkyFishSpecialItemCard</a>
       </td>
     </tr>
 
@@ -777,15 +943,209 @@
       <td><span class="swatch" style="background:#ffd166"></span><b>SkyFishSpecialItemCard</b></td>
       <td class="purpose">Special inventory item card displaying chest or trophy icon, rarity, and open/use button.</td>
       <td class="wiring">
-        <br> &larr; <a class="xref" data-target="SkyFishSpecialInventoryUI">SkyFishSpecialInventoryUI</a>
+         &rarr; <a class="xref" data-target="SkyFishSpecialInventoryUI">SkyFishSpecialInventoryUI</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishSpecialInventoryUI">SkyFishSpecialInventoryUI</a>
       </td>
-    </tr></tbody>
+    </tr>
+
+    <tr data-name="SkyFishTitleRegistry" data-cat="data" id="row-SkyFishTitleRegistry">
+      <td><span class="swatch" style="background:#4aa3ff"></span><b>SkyFishTitleRegistry</b></td>
+      <td class="purpose">Player title data store providing display strings for earned title IDs.</td>
+      <td class="wiring">
+        
+        <br>
+         &larr; <a class="xref" data-target="SkyFishBagInventoryUI">SkyFishBagInventoryUI</a>, <a class="xref" data-target="SkyFishDriftersTracker">SkyFishDriftersTracker</a>, <a class="xref" data-target="SkyFishNameplate">SkyFishNameplate</a>, <a class="xref" data-target="SkyFishOverviewUI">SkyFishOverviewUI</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishUIEffect" data-cat="hud" id="row-SkyFishUIEffect">
+      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishUIEffect</b></td>
+      <td class="purpose">UdonSharp port of Coffee.UIEffects&#x27; UIEffect — pushes color, tone, transition, shadow, edge, and gradation filter parameters to UI material shaders.</td>
+      <td class="wiring">
+        
+        <br>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishUIPositioner" data-cat="hud" id="row-SkyFishUIPositioner">
+      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishUIPositioner</b></td>
+      <td class="purpose">World-space UI positioner that smoothly follows a target transform at a configurable offset.</td>
+      <td class="wiring">
+        
+        <br>
+         &larr; <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>, <a class="xref" data-target="SkyFishMinigame">SkyFishMinigame</a>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishWelcomeSequence" data-cat="world" id="row-SkyFishWelcomeSequence">
+      <td><span class="swatch" style="background:#4ad2a6"></span><b>SkyFishWelcomeSequence</b></td>
+      <td class="purpose">Plays a one-shot welcome cinematic the first time the local player crosses the trigger wall.</td>
+      <td class="wiring">
+        
+        <br>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishWristFollower" data-cat="hud" id="row-SkyFishWristFollower">
+      <td><span class="swatch" style="background:#c1a0ff"></span><b>SkyFishWristFollower</b></td>
+      <td class="purpose">Wrist-attachment follower with palm-up reveal — positions a UI panel relative to the player&#x27;s wrist bone, hidden when palm faces down.</td>
+      <td class="wiring">
+        
+        <br>
+      </td>
+    </tr>
+
+    <tr data-name="SkyFishZoneTrigger" data-cat="network" id="row-SkyFishZoneTrigger">
+      <td><span class="swatch" style="background:#ffa94d"></span><b>SkyFishZoneTrigger</b></td>
+      <td class="purpose">Zone boundary trigger that notifies the game manager when the local player enters or exits a fishing zone.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishGameManager">SkyFishGameManager</a>
+        <br>
+      </td>
+    </tr>
+
+    <tr data-name="SkyboxSwapper" data-cat="world" id="row-SkyboxSwapper">
+      <td><span class="swatch" style="background:#4ad2a6"></span><b>SkyboxSwapper</b></td>
+      <td class="purpose">Deprecated stub — replaced by SkyController which drives a single procedural skybox shader continuously.</td>
+      <td class="wiring">
+        
+        <br>
+      </td>
+    </tr>
+
+    <tr data-name="VolumetricCloudController" data-cat="world" id="row-VolumetricCloudController">
+      <td><span class="swatch" style="background:#4ad2a6"></span><b>VolumetricCloudController</b></td>
+      <td class="purpose">Deprecated stub — cloud system removed (too taxing for VR).</td>
+      <td class="wiring">
+        
+        <br>
+      </td>
+    </tr>
+
+    <tr data-name="VulpariBlink" data-cat="vulpari" id="row-VulpariBlink">
+      <td><span class="swatch" style="background:#ff6bd1"></span><b>VulpariBlink</b></td>
+      <td class="purpose">Eye blink animation controller for the Vulpari NPC with randomized timing.</td>
+      <td class="wiring">
+        
+        <br>
+         &larr; <a class="xref" data-target="VulpariPresence">VulpariPresence</a>
+      </td>
+    </tr>
+
+    <tr data-name="VulpariDialog" data-cat="vulpari" id="row-VulpariDialog">
+      <td><span class="swatch" style="background:#ff6bd1"></span><b>VulpariDialog</b></td>
+      <td class="purpose">Dialog data container for a single Vulpari conversation node with lines, choices, and branching.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="VulpariDialogRegistry">VulpariDialogRegistry</a>, <a class="xref" data-target="VulpariDialogUI">VulpariDialogUI</a>, <a class="xref" data-target="VulpariPresence">VulpariPresence</a>, <a class="xref" data-target="VulpariPrompt">VulpariPrompt</a>
+        <br>
+         &larr; <a class="xref" data-target="SkyFishMarketTeleporter">SkyFishMarketTeleporter</a>, <a class="xref" data-target="VulpariFlourish">VulpariFlourish</a>, <a class="xref" data-target="VulpariIdleMotion">VulpariIdleMotion</a>
+      </td>
+    </tr>
+
+    <tr data-name="VulpariDialogRegistry" data-cat="data" id="row-VulpariDialogRegistry">
+      <td><span class="swatch" style="background:#4aa3ff"></span><b>VulpariDialogRegistry</b></td>
+      <td class="purpose">Vulpari dialog tree registry providing conversation lookup by dialog ID.</td>
+      <td class="wiring">
+        
+        <br>
+         &larr; <a class="xref" data-target="VulpariDialog">VulpariDialog</a>, <a class="xref" data-target="VulpariPrompt">VulpariPrompt</a>
+      </td>
+    </tr>
+
+    <tr data-name="VulpariDialogUI" data-cat="vulpari" id="row-VulpariDialogUI">
+      <td><span class="swatch" style="background:#ff6bd1"></span><b>VulpariDialogUI</b></td>
+      <td class="purpose">Vulpari dialog UI controller managing line display, typewriter animation, and player choice buttons.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="VulpariTextAnimator">VulpariTextAnimator</a>
+        <br>
+         &larr; <a class="xref" data-target="VulpariDialog">VulpariDialog</a>
+      </td>
+    </tr>
+
+    <tr data-name="VulpariFlourish" data-cat="vulpari" id="row-VulpariFlourish">
+      <td><span class="swatch" style="background:#ff6bd1"></span><b>VulpariFlourish</b></td>
+      <td class="purpose">Vulpari NPC flourish gesture trigger playing contextual emote animations on interaction.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="VulpariDialog">VulpariDialog</a>, <a class="xref" data-target="VulpariPresence">VulpariPresence</a>
+        <br>
+      </td>
+    </tr>
+
+    <tr data-name="VulpariIdleMotion" data-cat="vulpari" id="row-VulpariIdleMotion">
+      <td><span class="swatch" style="background:#ff6bd1"></span><b>VulpariIdleMotion</b></td>
+      <td class="purpose">Vulpari NPC idle motion controller applying subtle floating and swaying animations.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="VulpariDialog">VulpariDialog</a>
+        <br>
+      </td>
+    </tr>
+
+    <tr data-name="VulpariPresence" data-cat="vulpari" id="row-VulpariPresence">
+      <td><span class="swatch" style="background:#ff6bd1"></span><b>VulpariPresence</b></td>
+      <td class="purpose">Vulpari NPC presence manager handling player proximity detection and greeting sequences.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="VulpariBlink">VulpariBlink</a>
+        <br>
+         &larr; <a class="xref" data-target="VulpariDialog">VulpariDialog</a>, <a class="xref" data-target="VulpariFlourish">VulpariFlourish</a>
+      </td>
+    </tr>
+
+    <tr data-name="VulpariPrompt" data-cat="vulpari" id="row-VulpariPrompt">
+      <td><span class="swatch" style="background:#ff6bd1"></span><b>VulpariPrompt</b></td>
+      <td class="purpose">World-space interaction prompt that appears above the Vulpari NPC when the player is nearby.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="VulpariDialogRegistry">VulpariDialogRegistry</a>, <a class="xref" data-target="VulpariTextAnimator">VulpariTextAnimator</a>
+        <br>
+         &larr; <a class="xref" data-target="VulpariDialog">VulpariDialog</a>
+      </td>
+    </tr>
+
+    <tr data-name="VulpariTextAnimator" data-cat="vulpari" id="row-VulpariTextAnimator">
+      <td><span class="swatch" style="background:#ff6bd1"></span><b>VulpariTextAnimator</b></td>
+      <td class="purpose">Typewriter-style text animator for Vulpari dialog lines with configurable speed and punctuation pauses.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="VulpariVoice">VulpariVoice</a>
+        <br>
+         &larr; <a class="xref" data-target="VulpariDialogUI">VulpariDialogUI</a>, <a class="xref" data-target="VulpariPrompt">VulpariPrompt</a>
+      </td>
+    </tr>
+
+    <tr data-name="VulpariVoice" data-cat="vulpari" id="row-VulpariVoice">
+      <td><span class="swatch" style="background:#ff6bd1"></span><b>VulpariVoice</b></td>
+      <td class="purpose">Vulpari NPC voice audio controller playing line-matched clips in sync with dialog display.</td>
+      <td class="wiring">
+        
+        <br>
+         &larr; <a class="xref" data-target="VulpariTextAnimator">VulpariTextAnimator</a>
+      </td>
+    </tr>
+
+    <tr data-name="WeatherListener" data-cat="world" id="row-WeatherListener">
+      <td><span class="swatch" style="background:#4ad2a6"></span><b>WeatherListener</b></td>
+      <td class="purpose">Lightweight weather event receiver that forwards time-of-day and weather state changes to a target component.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="WeatherManager">WeatherManager</a>
+        <br>
+      </td>
+    </tr>
+
+    <tr data-name="WeatherManager" data-cat="world" id="row-WeatherManager">
+      <td><span class="swatch" style="background:#4ad2a6"></span><b>WeatherManager</b></td>
+      <td class="purpose">Synced authority for weather state and continuous time-of-day phase, broadcasting OnWeatherChanged to listeners.</td>
+      <td class="wiring">
+         &rarr; <a class="xref" data-target="SkyFishAnnouncementHUD">SkyFishAnnouncementHUD</a>
+        <br>
+         &larr; <a class="xref" data-target="FogWallController">FogWallController</a>, <a class="xref" data-target="SkyController">SkyController</a>, <a class="xref" data-target="SkyFishBagInventoryUI">SkyFishBagInventoryUI</a>, <a class="xref" data-target="SkyFishDebugPanel">SkyFishDebugPanel</a>, <a class="xref" data-target="SkyFishGlobalEvents">SkyFishGlobalEvents</a>, <a class="xref" data-target="SkyFishMusicController">SkyFishMusicController</a>, <a class="xref" data-target="SkyFishPlayerHUD">SkyFishPlayerHUD</a>, <a class="xref" data-target="SkyFishRainController">SkyFishRainController</a>, <a class="xref" data-target="WeatherListener">WeatherListener</a>
+      </td>
+    </tr>
+</tbody>
   </table>
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
 <script>
-const GRAPH = {"nodes":[{"id":"CloudCellManager","cat":"world","color":"#4ad2a6","purpose":"Player-position-driven cloud cell activation grid with weather-based density and radius control.","deg":1},{"id":"CloudController","cat":"world","color":"#4ad2a6","purpose":"Cloud material tint and cluster density controller driven by time-of-day and weather state.","deg":1},{"id":"FishCatchIndex","cat":"data","color":"#4aa3ff","purpose":"Per-island static data container for fish species, rarity tiers, spawn weights, and time/weather modifiers.","deg":0},{"id":"FishZoneIndex","cat":"data","color":"#4aa3ff","purpose":"JSON-loaded per-island species pool with rarity-tier and SK-gated weighted random rolls.","deg":3},{"id":"FogWallController","cat":"world","color":"#4ad2a6","purpose":"Fog wall material color, alpha, and player-following controller driven by weather transitions.","deg":1},{"id":"HeroCloudController","cat":"world","color":"#4ad2a6","purpose":"Hero cloud wind, color, and per-cloud shape randomization controller driven by time-of-day and weather.","deg":1},{"id":"HeroCloudLODManager","cat":"world","color":"#4ad2a6","purpose":"Distance-based LOD activation manager that enables nearby hero cloud GameObjects and disables distant ones.","deg":0},{"id":"MurkKillZone","cat":"world","color":"#4ad2a6","purpose":"Teleports local player back to safety when they descend into the Murk kill zone.","deg":0},{"id":"PersistenceToggleManager","cat":"hud","color":"#c1a0ff","purpose":"Persistent GameObject toggle manager using VRC PlayerData for save/restore across sessions.","deg":0},{"id":"SkyController","cat":"world","color":"#4ad2a6","purpose":"DynamicSkybox material, scene fog, sun light, and ambient intensity controller with smooth time/weather transitions.","deg":2},{"id":"SkyFishAchievementItem","cat":"ui","color":"#ffd166","purpose":"UI card for a single Sky Feat achievement showing icon, title, progress bar, and status.","deg":2},{"id":"SkyFishAchievements","cat":"data","color":"#4aa3ff","purpose":"Achievement data store and unlock tracker for Sky Feats, backed by persistence quest-item bitmask.","deg":4},{"id":"SkyFishAchievementsMenu","cat":"ui","color":"#ffd166","purpose":"Achievement grid menu controller that drives all SkyFishAchievementItem cards via event-driven refresh.","deg":2},{"id":"SkyFishAmmoVendorCard","cat":"ui","color":"#ffd166","purpose":"Bolt vendor UI card \u2014 displays name, stock, stats, and buy buttons for one bolt type.","deg":1},{"id":"SkyFishAmmoVendorManager","cat":"ui","color":"#ffd166","purpose":"Bolt vendor logic controller managing card registration, purchase flow, and persistence drift polling.","deg":5},{"id":"SkyFishAnnouncementHUD","cat":"hud","color":"#c1a0ff","purpose":"Queued world-space announcement banner for level-up, zone change, weather events, and rare catches.","deg":3},{"id":"SkyFishBagCard","cat":"ui","color":"#ffd166","purpose":"Bag upgrade tier UI card displaying slot count, price, and purchase state for one tier.","deg":1},{"id":"SkyFishBagGridCard","cat":"ui","color":"#ffd166","purpose":"Minimal inventory grid card showing icon and name for one item slot in the Sky Bag.","deg":1},{"id":"SkyFishBagInventoryUI","cat":"ui","color":"#ffd166","purpose":"Sky Bag inventory grid UI controller managing card pooling, category tabs, and item preview display.","deg":12},{"id":"SkyFishBagManager","cat":"ui","color":"#ffd166","purpose":"Bag upgrade purchase manager handling tier progression, cost validation, and persistence sync.","deg":3},{"id":"SkyFishBroadcastManager","cat":"gameplay","color":"#ff6b6b","purpose":"Network broadcast relay for world-wide rare catch and level-up announcements.","deg":3},{"id":"SkyFishCard","cat":"ui","color":"#ffd166","purpose":"Generic item card UI component for displaying item name, rarity color, icon, and stats.","deg":2},{"id":"SkyFishCastController","cat":"gameplay","color":"#ff6b6b","purpose":"Harpoon cast input handler managing charge shot, Phase 1 trigger timing, and cancel logic.","deg":7},{"id":"SkyFishCatchPacker","cat":"gameplay","color":"#ff6b6b","purpose":"Bit-packs fish catch data (species, size tier, rarity, mutations) into a single int for persistence.","deg":4},{"id":"SkyFishChestRewards","cat":"gameplay","color":"#ff6b6b","purpose":"Chest reward roll and grant logic for treasure chests captured during Phase 2 minigame.","deg":1},{"id":"SkyFishCurrencyUI","cat":"hud","color":"#c1a0ff","purpose":"Currency HUD display controller that syncs Sky Coin balance from persistence.","deg":9},{"id":"SkyFishDebugPanel","cat":"hud","color":"#c1a0ff","purpose":"Inspector debug panel for testing time-of-day and weather combinations via toggleable logging.","deg":2},{"id":"SkyFishEchoGrant","cat":"gameplay","color":"#ff6b6b","purpose":"Echo (XP) grant and level-up system triggered after each fish catch and sell event.","deg":3},{"id":"SkyFishEnhancementSystem","cat":"ui","color":"#ffd166","purpose":"Equipment enhancement system managing Gem Enhancement Cracking rolls and stat bind application.","deg":5},{"id":"SkyFishEnhancementTransferUI","cat":"ui","color":"#ffd166","purpose":"central controller for the Enhancement Transfer console.","deg":7},{"id":"SkyFishForgeController","cat":"ui","color":"#ffd166","purpose":"orchestrates the Gem Enhancement Cracking sequence.","deg":5},{"id":"SkyFishForgeCrackUI","cat":"ui","color":"#ffd166","purpose":"drives the two-panel world-space canvas that shows the slot-machine cycle and the final reveal of a cracked enhancement name.","deg":3},{"id":"SkyFishForgeGemSelectUI","cat":"ui","color":"#ffd166","purpose":"Gem selection + details panel for the forge.","deg":9},{"id":"SkyFishForgeHammer","cat":"ui","color":"#ffd166","purpose":"drives the hammer cylinder animation, audio, and optional emissive rune / light shaft effects during a Gem Enhancement Crack.","deg":1},{"id":"SkyFishGameManager","cat":"gameplay","color":"#ff6b6b","purpose":"Master state machine for the SkyFish harpoon fishing system from cast to catch storage.","deg":19},{"id":"SkyFishGunInfoPanel","cat":"hud","color":"#c1a0ff","purpose":"On-gun info panel for displaying flash warnings and ammo status to the local player.","deg":4},{"id":"SkyFishGunManager","cat":"hud","color":"#c1a0ff","purpose":"Gun loadout manager tracking equipped dart, bolt, and bag and pushing stats to game systems.","deg":9},{"id":"SkyFishGunRowCard","cat":"ui","color":"#ffd166","purpose":"one gun row in the source or dest popup scroll list.","deg":1},{"id":"SkyFishGunSpawner","cat":"hud","color":"#c1a0ff","purpose":"Spawns and assigns the player's equipped harpoon gun prefab on join and loadout change.","deg":3},{"id":"SkyFishGunVendorCard","cat":"ui","color":"#ffd166","purpose":"Gun vendor UI card displaying dart or bag item name, stats, and purchase/equip buttons.","deg":1},{"id":"SkyFishGunVendorManager","cat":"ui","color":"#ffd166","purpose":"Gun vendor purchase and equip logic for dart and bag items with persistence sync.","deg":5},{"id":"SkyFishInventoryUI","cat":"ui","color":"#ffd166","purpose":"Inventory UI controller for the legacy item list, managing display refresh and slot selection.","deg":9},{"id":"SkyFishItemRegistry","cat":"data","color":"#4aa3ff","purpose":"JSON-loaded item registry providing names, sprites, stats, rarity, and condition labels for all item categories.","deg":9},{"id":"SkyFishLargeCard","cat":"ui","color":"#ffd166","purpose":"Large item detail card showing full stats block, icon, rarity header, and condition label.","deg":2},{"id":"SkyFishLineRenderer","cat":"gameplay","color":"#ff6b6b","purpose":"Harpoon line renderer managing cast arc, bolt flight, catch drag, and UI anchor transform.","deg":5},{"id":"SkyFishMarketLock","cat":"world","color":"#4ad2a6","purpose":"Market area entry lock that restricts access until the player meets a minimum level requirement.","deg":1},{"id":"SkyFishMarketTeleporter","cat":"world","color":"#4ad2a6","purpose":"Teleports the local player to the fish market zone on button press.","deg":6},{"id":"SkyFishMaterialLibrary","cat":"data","color":"#4aa3ff","purpose":"Material library providing shader mutation materials indexed by mutation ID for fish model application.","deg":3},{"id":"SkyFishMenuSpawner","cat":"hud","color":"#c1a0ff","purpose":"Spawns and positions the player's wrist menu UI on join and avatar change.","deg":3},{"id":"SkyFishMinigame","cat":"gameplay","color":"#ff6b6b","purpose":"Two-phase bite minigame controller managing ring precision UI (Phase 1) and bar fill catch (Phase 2).","deg":5},{"id":"SkyFishMutationBackgrounds","cat":"data","color":"#4aa3ff","purpose":"Mutation background image library providing per-mutation backdrop sprites for item cards.","deg":1},{"id":"SkyFishNameplate","cat":"hud","color":"#c1a0ff","purpose":"Player nameplate UI that displays display name and level above the player's head.","deg":4},{"id":"SkyFishNetworkSync","cat":"network","color":"#ffa94d","purpose":"Network state sync relay broadcasting fishing events, catch results, and rare catches to all clients.","deg":14},{"id":"SkyFishOverviewUI","cat":"hud","color":"#c1a0ff","purpose":"Overview stats panel showing lifetime catches, species count, level, and currency totals.","deg":5},{"id":"SkyFishPageManager","cat":"hud","color":"#c1a0ff","purpose":"Multi-page UI controller for the main HUD panel managing tab navigation and page activation.","deg":2},{"id":"SkyFishPatreonUnlock","cat":"hud","color":"#c1a0ff","purpose":"Patreon supporter reward system unlocking exclusive cosmetics based on persistent unlock flags.","deg":0},{"id":"SkyFishPersistence","cat":"data","color":"#4aa3ff","purpose":"VRC Persistence backend storing all player progression \u2014 inventory, currency, bolts, and catch records.","deg":23},{"id":"SkyFishPlayerHUD","cat":"hud","color":"#c1a0ff","purpose":"Player heads-up display controller syncing level, currency, and active zone to the HUD UI.","deg":2},{"id":"SkyFishRaritySystem","cat":"gameplay","color":"#ff6b6b","purpose":"Rarity tier roller and data provider for rarity names, colors, mutation rolls, and size bell curves.","deg":13},{"id":"SkyFishSeekerVendorCard","cat":"ui","color":"#ffd166","purpose":"Seeker item vendor UI card displaying name, stats, stock, and purchase button for one seeker type.","deg":1},{"id":"SkyFishSeekerVendorManager","cat":"ui","color":"#ffd166","purpose":"Seeker vendor purchase manager handling stock, pricing, and persistence sync for seeker items.","deg":5},{"id":"SkyFishSellUI","cat":"ui","color":"#ffd166","purpose":"Fish sell panel controller managing catch selection, value display, and sell confirmation.","deg":10},{"id":"SkyFishSellerCard","cat":"ui","color":"#ffd166","purpose":"Individual catch card in the sell panel showing fish name, rarity, size, and sell value.","deg":1},{"id":"SkyFishShowOffPickup","cat":"hud","color":"#c1a0ff","purpose":"Pickup behaviour for the show-off display stand allowing players to place and retrieve caught fish.","deg":3},{"id":"SkyFishSlotManager","cat":"network","color":"#ffa94d","purpose":"Slot ownership manager assigning fishing system slots to players on join and release.","deg":2},{"id":"SkyFishSpecialInventoryUI","cat":"ui","color":"#ffd166","purpose":"drives the Special Inventory tab AND the chest-opening choreography.","deg":7},{"id":"SkyFishSpecialItemCard","cat":"ui","color":"#ffd166","purpose":"Special inventory item card displaying chest or trophy icon, rarity, and open/use button.","deg":1},{"id":"SkyFishTitleRegistry","cat":"data","color":"#4aa3ff","purpose":"Player title data store providing display strings for earned title IDs.","deg":3},{"id":"SkyFishUIPositioner","cat":"hud","color":"#c1a0ff","purpose":"World-space UI positioner that smoothly follows a target transform at a configurable offset.","deg":2},{"id":"SkyFishWristFollower","cat":"hud","color":"#c1a0ff","purpose":"Wrist-attachment follower that positions and orients a UI panel relative to the player's wrist bone.","deg":0},{"id":"SkyFishZoneTrigger","cat":"network","color":"#ffa94d","purpose":"Zone boundary trigger that notifies the game manager when the local player enters or exits a fishing zone.","deg":1},{"id":"SkyboxSwapper","cat":"world","color":"#4ad2a6","purpose":"Swaps RenderSettings.skybox material on time-of-day transitions.","deg":1},{"id":"VolumetricCloudController","cat":"world","color":"#4ad2a6","purpose":"Volumetric cloud material parameter controller for density, base height, and lighting driven by weather.","deg":0},{"id":"VulpariBlink","cat":"vulpari","color":"#ff6bd1","purpose":"Eye blink animation controller for the Vulpari NPC with randomized timing.","deg":1},{"id":"VulpariDialog","cat":"vulpari","color":"#ff6bd1","purpose":"Dialog data container for a single Vulpari conversation node with lines, choices, and branching.","deg":7},{"id":"VulpariDialogRegistry","cat":"data","color":"#4aa3ff","purpose":"Vulpari dialog tree registry providing conversation lookup by dialog ID.","deg":2},{"id":"VulpariDialogUI","cat":"vulpari","color":"#ff6bd1","purpose":"Vulpari dialog UI controller managing line display, typewriter animation, and player choice buttons.","deg":2},{"id":"VulpariFlourish","cat":"vulpari","color":"#ff6bd1","purpose":"Vulpari NPC flourish gesture trigger playing contextual emote animations on interaction.","deg":2},{"id":"VulpariIdleMotion","cat":"vulpari","color":"#ff6bd1","purpose":"Vulpari NPC idle motion controller applying subtle floating and swaying animations.","deg":1},{"id":"VulpariPresence","cat":"vulpari","color":"#ff6bd1","purpose":"Vulpari NPC presence manager handling player proximity detection and greeting sequences.","deg":3},{"id":"VulpariPrompt","cat":"vulpari","color":"#ff6bd1","purpose":"World-space interaction prompt that appears above the Vulpari NPC when the player is nearby.","deg":3},{"id":"VulpariTextAnimator","cat":"vulpari","color":"#ff6bd1","purpose":"Typewriter-style text animator for Vulpari dialog lines with configurable speed and punctuation pauses.","deg":3},{"id":"VulpariVoice","cat":"vulpari","color":"#ff6bd1","purpose":"Vulpari NPC voice audio controller playing line-matched clips in sync with dialog display.","deg":1},{"id":"WeatherListener","cat":"world","color":"#4ad2a6","purpose":"Lightweight weather event receiver that forwards time-of-day and weather state changes to a target component.","deg":1},{"id":"WeatherManager","cat":"world","color":"#4ad2a6","purpose":"Central weather and time-of-day state machine broadcasting changes to all registered weather listeners.","deg":10}],"links":[{"source":"CloudCellManager","target":"WeatherManager","field":"weatherManager"},{"source":"FogWallController","target":"WeatherManager","field":"weatherManager"},{"source":"SkyController","target":"WeatherManager","field":"weatherManager"},{"source":"SkyFishAchievementItem","target":"SkyFishAchievements","field":"achievements"},{"source":"SkyFishAchievements","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishAchievementsMenu","target":"SkyFishAchievements","field":"achievements"},{"source":"SkyFishAchievementsMenu","target":"SkyFishAchievementItem","field":"items"},{"source":"SkyFishAmmoVendorCard","target":"SkyFishAmmoVendorManager","field":"manager"},{"source":"SkyFishAmmoVendorManager","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishAmmoVendorManager","target":"SkyFishItemRegistry","field":"itemRegistry"},{"source":"SkyFishAmmoVendorManager","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishAmmoVendorManager","target":"SkyFishCurrencyUI","field":"currencyUI"},{"source":"SkyFishAnnouncementHUD","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishBagCard","target":"SkyFishBagManager","field":"manager"},{"source":"SkyFishBagInventoryUI","target":"SkyFishGunManager","field":"localGunManager"},{"source":"SkyFishBagInventoryUI","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishBagInventoryUI","target":"SkyFishItemRegistry","field":"itemRegistry"},{"source":"SkyFishBagInventoryUI","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishBagInventoryUI","target":"SkyFishTitleRegistry","field":"titleRegistry"},{"source":"SkyFishBagInventoryUI","target":"SkyFishEnhancementSystem","field":"enhancementSystem"},{"source":"SkyFishBagInventoryUI","target":"SkyFishGameManager","field":"localGameManager"},{"source":"SkyFishBagInventoryUI","target":"WeatherManager","field":"weatherManager"},{"source":"SkyFishBagInventoryUI","target":"SkyFishBagGridCard","field":"gridCards"},{"source":"SkyFishBagManager","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishBagManager","target":"SkyFishCurrencyUI","field":"currencyUI"},{"source":"SkyFishBroadcastManager","target":"SkyFishAnnouncementHUD","field":"announcementHUD"},{"source":"SkyFishCastController","target":"SkyFishGameManager","field":"gameManager"},{"source":"SkyFishCastController","target":"SkyFishLineRenderer","field":"lineRenderer"},{"source":"SkyFishCastController","target":"SkyFishGunManager","field":"gunManager"},{"source":"SkyFishCastController","target":"SkyFishMinigame","field":"minigame"},{"source":"SkyFishCastController","target":"SkyFishNetworkSync","field":"networkSync"},{"source":"SkyFishCastController","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishCastController","target":"SkyFishGunInfoPanel","field":"infoPanel"},{"source":"SkyFishCurrencyUI","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishDebugPanel","target":"WeatherManager","field":"weatherManager"},{"source":"SkyFishDebugPanel","target":"SkyController","field":"skyController"},{"source":"SkyFishEchoGrant","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishEchoGrant","target":"SkyFishCatchPacker","field":"catchPacker"},{"source":"SkyFishEnhancementTransferUI","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishEnhancementTransferUI","target":"SkyFishItemRegistry","field":"itemRegistry"},{"source":"SkyFishEnhancementTransferUI","target":"SkyFishEnhancementSystem","field":"enhancementSystem"},{"source":"SkyFishEnhancementTransferUI","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishEnhancementTransferUI","target":"SkyFishBagInventoryUI","field":"bagInventoryUI"},{"source":"SkyFishEnhancementTransferUI","target":"SkyFishCurrencyUI","field":"currencyUI"},{"source":"SkyFishForgeController","target":"SkyFishEnhancementSystem","field":"enhancementSystem"},{"source":"SkyFishForgeController","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishForgeController","target":"SkyFishForgeHammer","field":"hammer"},{"source":"SkyFishForgeController","target":"SkyFishForgeCrackUI","field":"crackUI"},{"source":"SkyFishForgeCrackUI","target":"SkyFishEnhancementSystem","field":"enhancementSystem"},{"source":"SkyFishForgeCrackUI","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishForgeGemSelectUI","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishForgeGemSelectUI","target":"SkyFishItemRegistry","field":"itemRegistry"},{"source":"SkyFishForgeGemSelectUI","target":"SkyFishEnhancementSystem","field":"enhancementSystem"},{"source":"SkyFishForgeGemSelectUI","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishForgeGemSelectUI","target":"SkyFishForgeController","field":"forgeController"},{"source":"SkyFishForgeGemSelectUI","target":"SkyFishBagInventoryUI","field":"bagInventoryUI"},{"source":"SkyFishForgeGemSelectUI","target":"SkyFishSpecialInventoryUI","field":"specialInventoryUI"},{"source":"SkyFishForgeGemSelectUI","target":"SkyFishCurrencyUI","field":"debugCurrencyUI"},{"source":"SkyFishGameManager","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishGameManager","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishGameManager","target":"SkyFishEchoGrant","field":"echoGrant"},{"source":"SkyFishGameManager","target":"SkyFishCatchPacker","field":"catchPacker"},{"source":"SkyFishGameManager","target":"SkyFishNetworkSync","field":"networkSync"},{"source":"SkyFishGameManager","target":"SkyFishGunManager","field":"gunManager"},{"source":"SkyFishGameManager","target":"SkyFishMinigame","field":"minigame"},{"source":"SkyFishGameManager","target":"SkyFishLineRenderer","field":"lineRenderer"},{"source":"SkyFishGameManager","target":"SkyFishBroadcastManager","field":"broadcastManager"},{"source":"SkyFishGameManager","target":"SkyFishGunInfoPanel","field":"infoPanel"},{"source":"SkyFishGameManager","target":"SkyFishMaterialLibrary","field":"materialLibrary"},{"source":"SkyFishGameManager","target":"FishZoneIndex","field":"zoneData"},{"source":"SkyFishGameManager","target":"SkyFishUIPositioner","field":"catchResultPositioner"},{"source":"SkyFishGunInfoPanel","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishGunInfoPanel","target":"SkyFishItemRegistry","field":"itemRegistry"},{"source":"SkyFishGunManager","target":"SkyFishGameManager","field":"gameManager"},{"source":"SkyFishGunManager","target":"SkyFishLineRenderer","field":"lineRenderer"},{"source":"SkyFishGunManager","target":"SkyFishNetworkSync","field":"networkSync"},{"source":"SkyFishGunManager","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishGunRowCard","target":"SkyFishEnhancementTransferUI","field":"transferUI"},{"source":"SkyFishGunSpawner","target":"SkyFishNetworkSync","field":"networkSync"},{"source":"SkyFishGunSpawner","target":"SkyFishGunManager","field":"gunManager"},{"source":"SkyFishGunSpawner","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishGunVendorCard","target":"SkyFishGunVendorManager","field":"manager"},{"source":"SkyFishGunVendorManager","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishGunVendorManager","target":"SkyFishItemRegistry","field":"itemRegistry"},{"source":"SkyFishGunVendorManager","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishGunVendorManager","target":"SkyFishCurrencyUI","field":"currencyUI"},{"source":"SkyFishInventoryUI","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishInventoryUI","target":"SkyFishCatchPacker","field":"catchPacker"},{"source":"SkyFishInventoryUI","target":"FishZoneIndex","field":"zoneData"},{"source":"SkyFishInventoryUI","target":"SkyFishLargeCard","field":"largeCard"},{"source":"SkyFishInventoryUI","target":"SkyFishSellUI","field":"sellUI"},{"source":"SkyFishInventoryUI","target":"SkyFishSlotManager","field":"slotManager"},{"source":"SkyFishInventoryUI","target":"SkyFishCard","field":"inventoryCards"},{"source":"SkyFishLargeCard","target":"SkyFishMaterialLibrary","field":"materialLibrary"},{"source":"SkyFishLineRenderer","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishMarketTeleporter","target":"SkyFishSellUI","field":"sellUI"},{"source":"SkyFishMarketTeleporter","target":"SkyFishPageManager","field":"pageManager"},{"source":"SkyFishMarketTeleporter","target":"SkyFishMenuSpawner","field":"menuSpawner"},{"source":"SkyFishMarketTeleporter","target":"VulpariDialog","field":"vendorVulpari"},{"source":"SkyFishMarketTeleporter","target":"SkyFishMarketLock","field":"marketLock"},{"source":"SkyFishMenuSpawner","target":"SkyFishMarketTeleporter","field":"marketTeleporter"},{"source":"SkyFishMenuSpawner","target":"SkyFishPageManager","field":"pageManager"},{"source":"SkyFishMinigame","target":"SkyFishGameManager","field":"localGameManager"},{"source":"SkyFishMinigame","target":"SkyFishNetworkSync","field":"networkSync"},{"source":"SkyFishMinigame","target":"SkyFishUIPositioner","field":"phase2ResultPositioner"},{"source":"SkyFishNameplate","target":"SkyFishTitleRegistry","field":"titleRegistry"},{"source":"SkyFishNameplate","target":"SkyFishItemRegistry","field":"itemRegistry"},{"source":"SkyFishNameplate","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishNetworkSync","target":"SkyFishGameManager","field":"localGameManager"},{"source":"SkyFishNetworkSync","target":"SkyFishGunManager","field":"localGunManager"},{"source":"SkyFishNetworkSync","target":"SkyFishLineRenderer","field":"localLineRenderer"},{"source":"SkyFishNetworkSync","target":"SkyFishBagInventoryUI","field":"bagUI"},{"source":"SkyFishNetworkSync","target":"SkyFishNameplate","field":"remoteNameplate"},{"source":"SkyFishNetworkSync","target":"SkyFishShowOffPickup","field":"showOffPickup"},{"source":"SkyFishNetworkSync","target":"SkyFishBroadcastManager","field":"broadcastManager"},{"source":"SkyFishOverviewUI","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishOverviewUI","target":"SkyFishAchievements","field":"achievements"},{"source":"SkyFishOverviewUI","target":"SkyFishTitleRegistry","field":"titleRegistry"},{"source":"SkyFishOverviewUI","target":"SkyFishItemRegistry","field":"itemRegistry"},{"source":"SkyFishOverviewUI","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishPersistence","target":"SkyFishInventoryUI","field":"inventoryUI"},{"source":"SkyFishPersistence","target":"SkyFishAnnouncementHUD","field":"announcementHUD"},{"source":"SkyFishPlayerHUD","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishPlayerHUD","target":"WeatherManager","field":"weatherManager"},{"source":"SkyFishSeekerVendorCard","target":"SkyFishSeekerVendorManager","field":"manager"},{"source":"SkyFishSeekerVendorManager","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishSeekerVendorManager","target":"SkyFishItemRegistry","field":"itemRegistry"},{"source":"SkyFishSeekerVendorManager","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishSeekerVendorManager","target":"SkyFishCurrencyUI","field":"currencyUI"},{"source":"SkyFishSellUI","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishSellUI","target":"SkyFishCatchPacker","field":"catchPacker"},{"source":"SkyFishSellUI","target":"FishZoneIndex","field":"zoneData"},{"source":"SkyFishSellUI","target":"SkyFishInventoryUI","field":"inventoryUI"},{"source":"SkyFishSellUI","target":"SkyFishCurrencyUI","field":"currencyUI"},{"source":"SkyFishSellUI","target":"SkyFishMutationBackgrounds","field":"mutationBackgrounds"},{"source":"SkyFishSellUI","target":"SkyFishSellerCard","field":"sellerCards"},{"source":"SkyFishSellUI","target":"SkyFishCard","field":"invCards"},{"source":"SkyFishShowOffPickup","target":"SkyFishNetworkSync","field":"networkSync"},{"source":"SkyFishShowOffPickup","target":"SkyFishMaterialLibrary","field":"materialLibrary"},{"source":"SkyFishSlotManager","target":"SkyFishNetworkSync","field":"slotRigs"},{"source":"SkyFishSpecialInventoryUI","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishSpecialInventoryUI","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishSpecialInventoryUI","target":"SkyFishChestRewards","field":"chestRewards"},{"source":"SkyFishSpecialInventoryUI","target":"SkyFishCurrencyUI","field":"currencyUI"},{"source":"SkyFishSpecialInventoryUI","target":"SkyFishForgeGemSelectUI","field":"forgeGemSelectUI"},{"source":"SkyFishSpecialInventoryUI","target":"SkyFishSpecialItemCard","field":"specialCards"},{"source":"SkyFishZoneTrigger","target":"SkyFishGameManager","field":"gameManager"},{"source":"VulpariDialog","target":"VulpariPresence","field":"presence"},{"source":"VulpariDialog","target":"VulpariPrompt","field":"prompt"},{"source":"VulpariDialog","target":"VulpariDialogUI","field":"dialogUI"},{"source":"VulpariDialog","target":"VulpariDialogRegistry","field":"dialogRegistry"},{"source":"VulpariDialogUI","target":"VulpariTextAnimator","field":"textAnimator"},{"source":"VulpariFlourish","target":"VulpariPresence","field":"presence"},{"source":"VulpariFlourish","target":"VulpariDialog","field":"dialog"},{"source":"VulpariIdleMotion","target":"VulpariDialog","field":"dialog"},{"source":"VulpariPresence","target":"VulpariBlink","field":"blink"},{"source":"VulpariPrompt","target":"VulpariTextAnimator","field":"textAnimator"},{"source":"VulpariPrompt","target":"VulpariDialogRegistry","field":"dialogRegistry"},{"source":"VulpariTextAnimator","target":"VulpariVoice","field":"voice"},{"source":"WeatherListener","target":"WeatherManager","field":"weatherManager"},{"source":"WeatherManager","target":"CloudController","field":"cloudController"},{"source":"WeatherManager","target":"HeroCloudController","field":"heroCloudController"},{"source":"WeatherManager","target":"SkyboxSwapper","field":"skyboxSwapper"}]};
+const GRAPH = {"nodes":[{"id":"FishCatchIndex","cat":"data","color":"#4aa3ff","purpose":"Per-island static data container for fish species, rarity tiers, spawn weights, and time/weather modifiers.","deg":0},{"id":"FishZoneIndex","cat":"data","color":"#4aa3ff","purpose":"JSON-loaded per-island species pool with rarity-tier and SK-gated weighted random rolls.","deg":5},{"id":"FogWallController","cat":"world","color":"#4ad2a6","purpose":"Fog wall material color, alpha, and player-following controller driven by weather transitions.","deg":1},{"id":"MurkKillZone","cat":"world","color":"#4ad2a6","purpose":"Teleports local player back to safety when they descend into the Murk kill zone.","deg":0},{"id":"PersistenceToggleManager","cat":"data","color":"#4aa3ff","purpose":"Persistent GameObject toggle manager using VRC PlayerData for save/restore across sessions.","deg":0},{"id":"SkyController","cat":"world","color":"#4ad2a6","purpose":"Sole owner of skybox shader properties, sun light, fog, and ambient \u2014 drives a continuous day/night cycle from WeatherManager.","deg":3},{"id":"SkyFishAchievementCard","cat":"ui","color":"#ffd166","purpose":"One achievement card in the Sky Feats grid \u2014 pure display component driven by SkyFishAchievements.","deg":2},{"id":"SkyFishAchievements","cat":"data","color":"#4aa3ff","purpose":"Long-term goal tracker for Sky Feats \u2014 handles unlock detection, tiered SC reward grants, and persistence-backed bitmask state.","deg":9},{"id":"SkyFishAmmoVendorCard","cat":"ui","color":"#ffd166","purpose":"Bolt vendor UI card \u2014 displays name, stock, stats, and buy buttons for one bolt type.","deg":2},{"id":"SkyFishAmmoVendorManager","cat":"ui","color":"#ffd166","purpose":"Bolt vendor logic controller managing card registration, purchase flow, and persistence drift polling.","deg":6},{"id":"SkyFishAnnouncementHUD","cat":"hud","color":"#c1a0ff","purpose":"Queued world-space announcement banner for level-up, zone change, weather events, and rare catches.","deg":10},{"id":"SkyFishBagCard","cat":"ui","color":"#ffd166","purpose":"Bag upgrade tier UI card displaying slot count, price, and purchase state for one tier.","deg":2},{"id":"SkyFishBagGridCard","cat":"ui","color":"#ffd166","purpose":"Minimal inventory grid card showing icon and name for one item slot in the Sky Bag.","deg":2},{"id":"SkyFishBagInventoryUI","cat":"ui","color":"#ffd166","purpose":"Sky Bag inventory grid UI controller managing card pooling, category tabs, and item preview display.","deg":13},{"id":"SkyFishBagManager","cat":"ui","color":"#ffd166","purpose":"Bag upgrade purchase manager handling tier progression, cost validation, and persistence sync.","deg":4},{"id":"SkyFishBroadcastManager","cat":"gameplay","color":"#ff6b6b","purpose":"Network broadcast relay for world-wide rare catch and level-up announcements.","deg":3},{"id":"SkyFishCard","cat":"ui","color":"#ffd166","purpose":"Generic item card UI component for displaying item name, rarity color, icon, and stats.","deg":2},{"id":"SkyFishCastController","cat":"gameplay","color":"#ff6b6b","purpose":"Harpoon cast input handler managing charge shot, Phase 1 trigger timing, and cancel logic.","deg":7},{"id":"SkyFishCatchPacker","cat":"gameplay","color":"#ff6b6b","purpose":"Bit-packs fish catch data (species, size tier, rarity, mutations) into a single int for persistence.","deg":7},{"id":"SkyFishChestRewards","cat":"gameplay","color":"#ff6b6b","purpose":"Chest reward roll and grant logic for treasure chests captured during Phase 2 minigame.","deg":1},{"id":"SkyFishCollectorICard","cat":"ui","color":"#ffd166","purpose":"One species card in the Fish Collector I tracker \u2014 shows lock state, rarity color, and species silhouette.","deg":2},{"id":"SkyFishCollectorIManager","cat":"ui","color":"#ffd166","purpose":"Unified Sky Journal manager driving both Collector I (species grid view) and Collector II (per-species size/mutation tracker).","deg":8},{"id":"SkyFishCurrencyUI","cat":"hud","color":"#c1a0ff","purpose":"Currency HUD display controller that syncs Sky Coin balance from persistence.","deg":12},{"id":"SkyFishDailyQuestCard","cat":"ui","color":"#ffd166","purpose":"One quest card in the Daily tab \u2014 pure display component driven by SkyFishDailyQuests.","deg":2},{"id":"SkyFishDailyQuests","cat":"ui","color":"#ffd166","purpose":"Owns the daily quest system \u2014 parses skyfish_dailies.json, picks 10 deterministic quests per UTC day, and drives the quest cards.","deg":8},{"id":"SkyFishDailyRewardCard","cat":"ui","color":"#ffd166","purpose":"UI component for one slot in the daily rewards window.","deg":2},{"id":"SkyFishDailyRewards","cat":"ui","color":"#ffd166","purpose":"JSON-driven daily login rewards with server-time anti-cheat \u2014 tracks consecutive-day streak and grants tiered rewards.","deg":6},{"id":"SkyFishDebugPanel","cat":"hud","color":"#c1a0ff","purpose":"Inspector debug panel for testing time-of-day and weather combinations via toggleable logging.","deg":2},{"id":"SkyFishDriftersTracker","cat":"ui","color":"#ffd166","purpose":"Live Drifters panel showing all players in the instance with their distance from the local player, sorted closest-first.","deg":5},{"id":"SkyFishEchoGrant","cat":"gameplay","color":"#ff6b6b","purpose":"Echo (XP) grant and level-up system triggered after each fish catch and sell event.","deg":4},{"id":"SkyFishEnhancementSystem","cat":"ui","color":"#ffd166","purpose":"Equipment enhancement system managing Gem Enhancement Cracking rolls and stat bind application.","deg":5},{"id":"SkyFishEnhancementTransferUI","cat":"ui","color":"#ffd166","purpose":"Central controller for the Enhancement Transfer console.","deg":8},{"id":"SkyFishForgeAmbience","cat":"world","color":"#4ad2a6","purpose":"Proximity-driven ambient audio loop that fades in when the local player approaches the forge.","deg":0},{"id":"SkyFishForgeController","cat":"ui","color":"#ffd166","purpose":"Orchestrates the Gem Enhancement Cracking sequence.","deg":5},{"id":"SkyFishForgeCrackUI","cat":"ui","color":"#ffd166","purpose":"Drives the two-panel world-space canvas showing the slot-machine cycle and final reveal of a cracked enhancement name.","deg":3},{"id":"SkyFishForgeGemSelectUI","cat":"ui","color":"#ffd166","purpose":"Gem selection + details panel for the forge.","deg":9},{"id":"SkyFishForgeHammer","cat":"ui","color":"#ffd166","purpose":"Drives the hammer cylinder animation, audio, and emissive rune / light shaft effects during a Gem Enhancement Crack.","deg":1},{"id":"SkyFishGambleSlotMachine","cat":"ui","color":"#ffd166","purpose":"Sky Pearl Pocket Void slot-machine UI \u2014 player spends Sky Pearls to spin a 3\u00d73 reel grid for SC payouts.","deg":2},{"id":"SkyFishGameManager","cat":"gameplay","color":"#ff6b6b","purpose":"Master state machine for the SkyFish harpoon fishing system from cast to catch storage.","deg":21},{"id":"SkyFishGlobalEvents","cat":"network","color":"#ffa94d","purpose":"Master-synced manager for ultra-rare global events that aren't part of the standard weather cycle (Blood Moon, Laser Storm, etc.).","deg":5},{"id":"SkyFishGrappleAxisInput","cat":"gameplay","color":"#ff6b6b","purpose":"Reads a Unity Input axis and feeds analog input to SkyFishGrappleController.","deg":1},{"id":"SkyFishGrappleButtonInput","cat":"gameplay","color":"#ff6b6b","purpose":"Reads a Unity Input button and feeds binary 0/1 input to SkyFishGrappleController.","deg":1},{"id":"SkyFishGrappleController","cat":"gameplay","color":"#ff6b6b","purpose":"Player tether/grapple physics \u2014 handles raycast attach, swing-on-sphere projection, winch-mode pull-in, and reel-in/reel-out.","deg":6},{"id":"SkyFishGrappleLineRenderer","cat":"gameplay","color":"#ff6b6b","purpose":"Dedicated rope + hook visual for SkyFishGrappleSystem.","deg":3},{"id":"SkyFishGrapplePickupInput","cat":"gameplay","color":"#ff6b6b","purpose":"Pickup-based input source for SkyFishGrappleController.","deg":1},{"id":"SkyFishGrappleProperties","cat":"gameplay","color":"#ff6b6b","purpose":"Tunable physics + detection + input properties for SkyFishGrappleController.","deg":1},{"id":"SkyFishGrappleSystem","cat":"gameplay","color":"#ff6b6b","purpose":"Orchestrates SkyFishGrappleController for the grapple-bolt loadout \u2014 gates on equipped/unlocked, drives trigger and reel inputs, manages STATE_GRAPPLING.","deg":7},{"id":"SkyFishGrappleToggleButton","cat":"gameplay","color":"#ff6b6b","purpose":"Companion script for any UI button that toggles the scene-wide grapple mode flag on SkyFishPersistence.","deg":1},{"id":"SkyFishGrappleTutorialPickup","cat":"gameplay","color":"#ff6b6b","purpose":"Static interactable that unlocks the grapple bolt for the local player.","deg":2},{"id":"SkyFishGunInfoPanel","cat":"hud","color":"#c1a0ff","purpose":"On-gun info panel for displaying flash warnings and ammo status to the local player.","deg":5},{"id":"SkyFishGunManager","cat":"hud","color":"#c1a0ff","purpose":"Gun loadout manager tracking equipped dart, bolt, and bag and pushing stats to game systems.","deg":10},{"id":"SkyFishGunRowCard","cat":"ui","color":"#ffd166","purpose":"One gun row in the Enhancement Transfer source/dest popup scroll list.","deg":2},{"id":"SkyFishGunSpawner","cat":"hud","color":"#c1a0ff","purpose":"Spawns and assigns the player's equipped harpoon gun prefab on join and loadout change.","deg":3},{"id":"SkyFishGunVendorCard","cat":"ui","color":"#ffd166","purpose":"Gun vendor UI card displaying dart or bag item name, stats, and purchase/equip buttons.","deg":2},{"id":"SkyFishGunVendorManager","cat":"ui","color":"#ffd166","purpose":"Gun vendor purchase and equip logic for dart and bag items with persistence sync.","deg":6},{"id":"SkyFishInventoryUI","cat":"ui","color":"#ffd166","purpose":"Inventory UI controller for the legacy item list, managing display refresh and slot selection.","deg":13},{"id":"SkyFishItemRegistry","cat":"data","color":"#4aa3ff","purpose":"JSON-loaded item registry providing names, sprites, stats, rarity, and condition labels for all item categories.","deg":12},{"id":"SkyFishLargeCard","cat":"ui","color":"#ffd166","purpose":"Large item detail card showing full stats block, icon, rarity header, and condition label.","deg":3},{"id":"SkyFishLineRenderer","cat":"gameplay","color":"#ff6b6b","purpose":"Harpoon line renderer managing cast arc, bolt flight, catch drag, and UI anchor transform.","deg":5},{"id":"SkyFishLineVendorCard","cat":"ui","color":"#ffd166","purpose":"Line vendor UI card displaying name, stats, color swatch, stock, and purchase button for one line type.","deg":2},{"id":"SkyFishLineVendorManager","cat":"ui","color":"#ffd166","purpose":"Line vendor purchase manager handling stock, pricing, and persistence sync for the 20 line types.","deg":6},{"id":"SkyFishMarketLock","cat":"world","color":"#4ad2a6","purpose":"Market area entry lock that restricts access until the player meets a minimum level requirement.","deg":1},{"id":"SkyFishMarketTeleporter","cat":"world","color":"#4ad2a6","purpose":"Teleports the local player to the fish market zone on button press.","deg":6},{"id":"SkyFishMaterialLibrary","cat":"data","color":"#4aa3ff","purpose":"Material library providing shader mutation materials indexed by mutation ID for fish model application.","deg":3},{"id":"SkyFishMenuSpawner","cat":"hud","color":"#c1a0ff","purpose":"Spawns and positions the player's wrist menu UI on join and avatar change.","deg":5},{"id":"SkyFishMinigame","cat":"gameplay","color":"#ff6b6b","purpose":"Two-phase bite minigame controller managing ring precision UI (Phase 1) and bar fill catch (Phase 2).","deg":5},{"id":"SkyFishMusicController","cat":"world","color":"#4ad2a6","purpose":"Local music brain that picks the right track based on a priority ladder and crossfades between tracks using two AudioSources.","deg":2},{"id":"SkyFishMutationBackgrounds","cat":"data","color":"#4aa3ff","purpose":"Mutation background image library providing per-mutation backdrop sprites for item cards.","deg":1},{"id":"SkyFishNameplate","cat":"hud","color":"#c1a0ff","purpose":"Player nameplate UI that displays display name and level above the player's head.","deg":4},{"id":"SkyFishNetworkSync","cat":"network","color":"#ffa94d","purpose":"Network state sync relay broadcasting fishing events, catch results, and rare catches to all clients.","deg":19},{"id":"SkyFishOverviewUI","cat":"hud","color":"#c1a0ff","purpose":"Overview stats panel showing lifetime catches, species count, level, and currency totals.","deg":6},{"id":"SkyFishPageManager","cat":"hud","color":"#c1a0ff","purpose":"Multi-page UI controller for the main HUD panel managing tab navigation and page activation.","deg":2},{"id":"SkyFishPatreonUnlock","cat":"hud","color":"#c1a0ff","purpose":"Patreon supporter reward system unlocking exclusive cosmetics based on persistent unlock flags.","deg":0},{"id":"SkyFishPersistence","cat":"data","color":"#4aa3ff","purpose":"VRC Persistence backend storing all player progression \u2014 inventory, currency, bolts, and catch records.","deg":33},{"id":"SkyFishPlayerHUD","cat":"hud","color":"#c1a0ff","purpose":"Player heads-up display controller syncing level, currency, and active zone to the HUD UI.","deg":2},{"id":"SkyFishRainCollision","cat":"world","color":"#4ad2a6","purpose":"VRChat-compatible port of Digital Ruby's RainCollision \u2014 drives splash particles where rain hits surfaces.","deg":0},{"id":"SkyFishRainController","cat":"world","color":"#4ad2a6","purpose":"VRChat-compatible port of Digital Ruby's RainScript \u2014 drives the Rain Maker prefab's particle systems and audio from weather state.","deg":1},{"id":"SkyFishRaritySystem","cat":"gameplay","color":"#ff6b6b","purpose":"Rarity tier roller and data provider for rarity names, colors, mutation rolls, and size bell curves.","deg":18},{"id":"SkyFishRarityVFX","cat":"gameplay","color":"#ff6b6b","purpose":"Spawns a per-rarity VFX prefab (particle + shader aura) on caught fish models, indexed 0\u20139 by rarity tier.","deg":4},{"id":"SkyFishSeekerVendorCard","cat":"ui","color":"#ffd166","purpose":"Seeker item vendor UI card displaying name, stats, stock, and purchase button for one seeker type.","deg":2},{"id":"SkyFishSeekerVendorManager","cat":"ui","color":"#ffd166","purpose":"Seeker vendor purchase manager handling stock, pricing, and persistence sync for seeker items.","deg":6},{"id":"SkyFishSellUI","cat":"ui","color":"#ffd166","purpose":"Fish sell panel controller managing catch selection, value display, and sell confirmation.","deg":10},{"id":"SkyFishSellerCard","cat":"ui","color":"#ffd166","purpose":"Individual catch card in the sell panel showing fish name, rarity, size, and sell value.","deg":1},{"id":"SkyFishShowOffPickup","cat":"hud","color":"#c1a0ff","purpose":"Pickup behaviour for the show-off display stand allowing players to place and retrieve caught fish.","deg":4},{"id":"SkyFishSlotManager","cat":"network","color":"#ffa94d","purpose":"Slot ownership manager assigning fishing system slots to players on join and release.","deg":5},{"id":"SkyFishSpecialInventoryUI","cat":"ui","color":"#ffd166","purpose":"Drives the Special Inventory tab and the chest-opening choreography.","deg":8},{"id":"SkyFishSpecialItemCard","cat":"ui","color":"#ffd166","purpose":"Special inventory item card displaying chest or trophy icon, rarity, and open/use button.","deg":2},{"id":"SkyFishTitleRegistry","cat":"data","color":"#4aa3ff","purpose":"Player title data store providing display strings for earned title IDs.","deg":4},{"id":"SkyFishUIEffect","cat":"hud","color":"#c1a0ff","purpose":"UdonSharp port of Coffee.UIEffects' UIEffect \u2014 pushes color, tone, transition, shadow, edge, and gradation filter parameters to UI material shaders.","deg":0},{"id":"SkyFishUIPositioner","cat":"hud","color":"#c1a0ff","purpose":"World-space UI positioner that smoothly follows a target transform at a configurable offset.","deg":2},{"id":"SkyFishWelcomeSequence","cat":"world","color":"#4ad2a6","purpose":"Plays a one-shot welcome cinematic the first time the local player crosses the trigger wall.","deg":0},{"id":"SkyFishWristFollower","cat":"hud","color":"#c1a0ff","purpose":"Wrist-attachment follower with palm-up reveal \u2014 positions a UI panel relative to the player's wrist bone, hidden when palm faces down.","deg":0},{"id":"SkyFishZoneTrigger","cat":"network","color":"#ffa94d","purpose":"Zone boundary trigger that notifies the game manager when the local player enters or exits a fishing zone.","deg":1},{"id":"SkyboxSwapper","cat":"world","color":"#4ad2a6","purpose":"Deprecated stub \u2014 replaced by SkyController which drives a single procedural skybox shader continuously.","deg":0},{"id":"VolumetricCloudController","cat":"world","color":"#4ad2a6","purpose":"Deprecated stub \u2014 cloud system removed (too taxing for VR).","deg":0},{"id":"VulpariBlink","cat":"vulpari","color":"#ff6bd1","purpose":"Eye blink animation controller for the Vulpari NPC with randomized timing.","deg":1},{"id":"VulpariDialog","cat":"vulpari","color":"#ff6bd1","purpose":"Dialog data container for a single Vulpari conversation node with lines, choices, and branching.","deg":7},{"id":"VulpariDialogRegistry","cat":"data","color":"#4aa3ff","purpose":"Vulpari dialog tree registry providing conversation lookup by dialog ID.","deg":2},{"id":"VulpariDialogUI","cat":"vulpari","color":"#ff6bd1","purpose":"Vulpari dialog UI controller managing line display, typewriter animation, and player choice buttons.","deg":2},{"id":"VulpariFlourish","cat":"vulpari","color":"#ff6bd1","purpose":"Vulpari NPC flourish gesture trigger playing contextual emote animations on interaction.","deg":2},{"id":"VulpariIdleMotion","cat":"vulpari","color":"#ff6bd1","purpose":"Vulpari NPC idle motion controller applying subtle floating and swaying animations.","deg":1},{"id":"VulpariPresence","cat":"vulpari","color":"#ff6bd1","purpose":"Vulpari NPC presence manager handling player proximity detection and greeting sequences.","deg":3},{"id":"VulpariPrompt","cat":"vulpari","color":"#ff6bd1","purpose":"World-space interaction prompt that appears above the Vulpari NPC when the player is nearby.","deg":3},{"id":"VulpariTextAnimator","cat":"vulpari","color":"#ff6bd1","purpose":"Typewriter-style text animator for Vulpari dialog lines with configurable speed and punctuation pauses.","deg":3},{"id":"VulpariVoice","cat":"vulpari","color":"#ff6bd1","purpose":"Vulpari NPC voice audio controller playing line-matched clips in sync with dialog display.","deg":1},{"id":"WeatherListener","cat":"world","color":"#4ad2a6","purpose":"Lightweight weather event receiver that forwards time-of-day and weather state changes to a target component.","deg":1},{"id":"WeatherManager","cat":"world","color":"#4ad2a6","purpose":"Synced authority for weather state and continuous time-of-day phase, broadcasting OnWeatherChanged to listeners.","deg":10}],"links":[{"source":"FogWallController","target":"WeatherManager","field":"weatherManager"},{"source":"SkyController","target":"WeatherManager","field":"weatherManager"},{"source":"SkyController","target":"SkyFishGlobalEvents","field":"globalEvents"},{"source":"SkyFishAchievementCard","target":"SkyFishAchievements","field":"manager"},{"source":"SkyFishAchievements","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishAchievements","target":"SkyFishCatchPacker","field":"catchPacker"},{"source":"SkyFishAchievements","target":"SkyFishInventoryUI","field":"inventoryUI"},{"source":"SkyFishAchievements","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishAchievements","target":"FishZoneIndex","field":"zoneData"},{"source":"SkyFishAchievements","target":"SkyFishAnnouncementHUD","field":"announcementHUD"},{"source":"SkyFishAchievements","target":"SkyFishAchievementCard","field":"cards"},{"source":"SkyFishAmmoVendorCard","target":"SkyFishAmmoVendorManager","field":"manager"},{"source":"SkyFishAmmoVendorManager","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishAmmoVendorManager","target":"SkyFishItemRegistry","field":"itemRegistry"},{"source":"SkyFishAmmoVendorManager","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishAmmoVendorManager","target":"SkyFishCurrencyUI","field":"currencyUI"},{"source":"SkyFishAmmoVendorManager","target":"SkyFishAmmoVendorCard","field":"_cards"},{"source":"SkyFishAnnouncementHUD","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishBagCard","target":"SkyFishBagManager","field":"manager"},{"source":"SkyFishBagGridCard","target":"SkyFishBagInventoryUI","field":"bagUI"},{"source":"SkyFishBagInventoryUI","target":"SkyFishGunManager","field":"localGunManager"},{"source":"SkyFishBagInventoryUI","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishBagInventoryUI","target":"SkyFishItemRegistry","field":"itemRegistry"},{"source":"SkyFishBagInventoryUI","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishBagInventoryUI","target":"SkyFishTitleRegistry","field":"titleRegistry"},{"source":"SkyFishBagInventoryUI","target":"SkyFishEnhancementSystem","field":"enhancementSystem"},{"source":"SkyFishBagInventoryUI","target":"SkyFishGameManager","field":"localGameManager"},{"source":"SkyFishBagInventoryUI","target":"WeatherManager","field":"weatherManager"},{"source":"SkyFishBagInventoryUI","target":"SkyFishBagGridCard","field":"gridCards"},{"source":"SkyFishBagManager","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishBagManager","target":"SkyFishCurrencyUI","field":"currencyUI"},{"source":"SkyFishBagManager","target":"SkyFishBagCard","field":"_cards"},{"source":"SkyFishBroadcastManager","target":"SkyFishAnnouncementHUD","field":"announcementHUD"},{"source":"SkyFishCastController","target":"SkyFishGameManager","field":"gameManager"},{"source":"SkyFishCastController","target":"SkyFishLineRenderer","field":"lineRenderer"},{"source":"SkyFishCastController","target":"SkyFishGunManager","field":"gunManager"},{"source":"SkyFishCastController","target":"SkyFishMinigame","field":"minigame"},{"source":"SkyFishCastController","target":"SkyFishNetworkSync","field":"networkSync"},{"source":"SkyFishCastController","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishCastController","target":"SkyFishGunInfoPanel","field":"infoPanel"},{"source":"SkyFishCollectorICard","target":"SkyFishCollectorIManager","field":"manager"},{"source":"SkyFishCollectorIManager","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishCollectorIManager","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishCollectorIManager","target":"SkyFishCatchPacker","field":"catchPacker"},{"source":"SkyFishCollectorIManager","target":"SkyFishInventoryUI","field":"inventoryUI"},{"source":"SkyFishCollectorIManager","target":"SkyFishAnnouncementHUD","field":"announcementHUD"},{"source":"SkyFishCollectorIManager","target":"FishZoneIndex","field":"zoneData"},{"source":"SkyFishCollectorIManager","target":"SkyFishCollectorICard","field":"cards"},{"source":"SkyFishCurrencyUI","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishDailyQuestCard","target":"SkyFishDailyQuests","field":"manager"},{"source":"SkyFishDailyQuests","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishDailyQuests","target":"SkyFishCatchPacker","field":"catchPacker"},{"source":"SkyFishDailyQuests","target":"SkyFishInventoryUI","field":"inventoryUI"},{"source":"SkyFishDailyQuests","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishDailyQuests","target":"SkyFishAnnouncementHUD","field":"announcementHUD"},{"source":"SkyFishDailyQuests","target":"SkyFishDailyQuestCard","field":"cards"},{"source":"SkyFishDailyRewardCard","target":"SkyFishDailyRewards","field":"manager"},{"source":"SkyFishDailyRewards","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishDailyRewards","target":"SkyFishCurrencyUI","field":"currencyUI"},{"source":"SkyFishDailyRewards","target":"SkyFishItemRegistry","field":"itemRegistry"},{"source":"SkyFishDailyRewards","target":"SkyFishAnnouncementHUD","field":"announcementHUD"},{"source":"SkyFishDailyRewards","target":"SkyFishDailyRewardCard","field":"_cards"},{"source":"SkyFishDebugPanel","target":"WeatherManager","field":"weatherManager"},{"source":"SkyFishDebugPanel","target":"SkyController","field":"skyController"},{"source":"SkyFishDriftersTracker","target":"SkyFishSlotManager","field":"slotManager"},{"source":"SkyFishDriftersTracker","target":"SkyFishItemRegistry","field":"itemRegistry"},{"source":"SkyFishDriftersTracker","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishDriftersTracker","target":"SkyFishTitleRegistry","field":"titleRegistry"},{"source":"SkyFishDriftersTracker","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishEchoGrant","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishEchoGrant","target":"SkyFishCatchPacker","field":"catchPacker"},{"source":"SkyFishEchoGrant","target":"SkyFishGlobalEvents","field":"globalEvents"},{"source":"SkyFishEnhancementTransferUI","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishEnhancementTransferUI","target":"SkyFishItemRegistry","field":"itemRegistry"},{"source":"SkyFishEnhancementTransferUI","target":"SkyFishEnhancementSystem","field":"enhancementSystem"},{"source":"SkyFishEnhancementTransferUI","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishEnhancementTransferUI","target":"SkyFishBagInventoryUI","field":"bagInventoryUI"},{"source":"SkyFishEnhancementTransferUI","target":"SkyFishCurrencyUI","field":"currencyUI"},{"source":"SkyFishEnhancementTransferUI","target":"SkyFishGunRowCard","field":"_sourceRows"},{"source":"SkyFishEnhancementTransferUI","target":"SkyFishGunRowCard","field":"_destRows"},{"source":"SkyFishForgeController","target":"SkyFishEnhancementSystem","field":"enhancementSystem"},{"source":"SkyFishForgeController","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishForgeController","target":"SkyFishForgeHammer","field":"hammer"},{"source":"SkyFishForgeController","target":"SkyFishForgeCrackUI","field":"crackUI"},{"source":"SkyFishForgeCrackUI","target":"SkyFishEnhancementSystem","field":"enhancementSystem"},{"source":"SkyFishForgeCrackUI","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishForgeGemSelectUI","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishForgeGemSelectUI","target":"SkyFishItemRegistry","field":"itemRegistry"},{"source":"SkyFishForgeGemSelectUI","target":"SkyFishEnhancementSystem","field":"enhancementSystem"},{"source":"SkyFishForgeGemSelectUI","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishForgeGemSelectUI","target":"SkyFishForgeController","field":"forgeController"},{"source":"SkyFishForgeGemSelectUI","target":"SkyFishBagInventoryUI","field":"bagInventoryUI"},{"source":"SkyFishForgeGemSelectUI","target":"SkyFishSpecialInventoryUI","field":"specialInventoryUI"},{"source":"SkyFishForgeGemSelectUI","target":"SkyFishCurrencyUI","field":"debugCurrencyUI"},{"source":"SkyFishGambleSlotMachine","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishGambleSlotMachine","target":"SkyFishCurrencyUI","field":"currencyUI"},{"source":"SkyFishGameManager","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishGameManager","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishGameManager","target":"SkyFishEchoGrant","field":"echoGrant"},{"source":"SkyFishGameManager","target":"SkyFishCatchPacker","field":"catchPacker"},{"source":"SkyFishGameManager","target":"SkyFishNetworkSync","field":"networkSync"},{"source":"SkyFishGameManager","target":"SkyFishGunManager","field":"gunManager"},{"source":"SkyFishGameManager","target":"SkyFishMinigame","field":"minigame"},{"source":"SkyFishGameManager","target":"SkyFishLineRenderer","field":"lineRenderer"},{"source":"SkyFishGameManager","target":"SkyFishBroadcastManager","field":"broadcastManager"},{"source":"SkyFishGameManager","target":"SkyFishGunInfoPanel","field":"infoPanel"},{"source":"SkyFishGameManager","target":"SkyFishMaterialLibrary","field":"materialLibrary"},{"source":"SkyFishGameManager","target":"SkyFishRarityVFX","field":"rarityVFX"},{"source":"SkyFishGameManager","target":"FishZoneIndex","field":"zoneData"},{"source":"SkyFishGameManager","target":"SkyFishUIPositioner","field":"catchResultPositioner"},{"source":"SkyFishGlobalEvents","target":"WeatherManager","field":"weatherManager"},{"source":"SkyFishGlobalEvents","target":"SkyFishAnnouncementHUD","field":"announcementHud"},{"source":"SkyFishGrappleAxisInput","target":"SkyFishGrappleController","field":"controller"},{"source":"SkyFishGrappleButtonInput","target":"SkyFishGrappleController","field":"controller"},{"source":"SkyFishGrappleController","target":"SkyFishGrappleProperties","field":"properties"},{"source":"SkyFishGrappleLineRenderer","target":"SkyFishGrappleController","field":"controllerRef"},{"source":"SkyFishGrapplePickupInput","target":"SkyFishGrappleController","field":"controller"},{"source":"SkyFishGrappleSystem","target":"SkyFishGrappleController","field":"controller"},{"source":"SkyFishGrappleSystem","target":"SkyFishGameManager","field":"gameManager"},{"source":"SkyFishGrappleSystem","target":"SkyFishGunManager","field":"gunManager"},{"source":"SkyFishGrappleSystem","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishGrappleSystem","target":"SkyFishNetworkSync","field":"networkSync"},{"source":"SkyFishGrappleSystem","target":"SkyFishGrappleLineRenderer","field":"lineRenderer"},{"source":"SkyFishGrappleSystem","target":"SkyFishGunInfoPanel","field":"infoPanel"},{"source":"SkyFishGrappleToggleButton","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishGrappleTutorialPickup","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishGrappleTutorialPickup","target":"SkyFishAnnouncementHUD","field":"announcementHUD"},{"source":"SkyFishGunInfoPanel","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishGunInfoPanel","target":"SkyFishItemRegistry","field":"itemRegistry"},{"source":"SkyFishGunManager","target":"SkyFishGameManager","field":"gameManager"},{"source":"SkyFishGunManager","target":"SkyFishLineRenderer","field":"lineRenderer"},{"source":"SkyFishGunManager","target":"SkyFishNetworkSync","field":"networkSync"},{"source":"SkyFishGunManager","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishGunRowCard","target":"SkyFishEnhancementTransferUI","field":"transferUI"},{"source":"SkyFishGunSpawner","target":"SkyFishNetworkSync","field":"networkSync"},{"source":"SkyFishGunSpawner","target":"SkyFishGunManager","field":"gunManager"},{"source":"SkyFishGunSpawner","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishGunVendorCard","target":"SkyFishGunVendorManager","field":"manager"},{"source":"SkyFishGunVendorManager","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishGunVendorManager","target":"SkyFishItemRegistry","field":"itemRegistry"},{"source":"SkyFishGunVendorManager","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishGunVendorManager","target":"SkyFishCurrencyUI","field":"currencyUI"},{"source":"SkyFishGunVendorManager","target":"SkyFishGunVendorCard","field":"_cards"},{"source":"SkyFishInventoryUI","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishInventoryUI","target":"SkyFishCatchPacker","field":"catchPacker"},{"source":"SkyFishInventoryUI","target":"FishZoneIndex","field":"zoneData"},{"source":"SkyFishInventoryUI","target":"SkyFishLargeCard","field":"largeCard"},{"source":"SkyFishInventoryUI","target":"SkyFishSellUI","field":"sellUI"},{"source":"SkyFishInventoryUI","target":"SkyFishSlotManager","field":"slotManager"},{"source":"SkyFishInventoryUI","target":"SkyFishCard","field":"inventoryCards"},{"source":"SkyFishInventoryUI","target":"SkyFishCard","field":"sellPanelCards"},{"source":"SkyFishInventoryUI","target":"SkyFishCard","field":"_activeCards"},{"source":"SkyFishLargeCard","target":"SkyFishMaterialLibrary","field":"materialLibrary"},{"source":"SkyFishLargeCard","target":"SkyFishRarityVFX","field":"rarityVFX"},{"source":"SkyFishLineRenderer","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishLineVendorCard","target":"SkyFishLineVendorManager","field":"manager"},{"source":"SkyFishLineVendorManager","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishLineVendorManager","target":"SkyFishItemRegistry","field":"itemRegistry"},{"source":"SkyFishLineVendorManager","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishLineVendorManager","target":"SkyFishCurrencyUI","field":"currencyUI"},{"source":"SkyFishLineVendorManager","target":"SkyFishLineVendorCard","field":"_cards"},{"source":"SkyFishMarketTeleporter","target":"SkyFishSellUI","field":"sellUI"},{"source":"SkyFishMarketTeleporter","target":"SkyFishPageManager","field":"pageManager"},{"source":"SkyFishMarketTeleporter","target":"SkyFishMenuSpawner","field":"menuSpawner"},{"source":"SkyFishMarketTeleporter","target":"VulpariDialog","field":"vendorVulpari"},{"source":"SkyFishMarketTeleporter","target":"SkyFishMarketLock","field":"marketLock"},{"source":"SkyFishMenuSpawner","target":"SkyFishMarketTeleporter","field":"marketTeleporter"},{"source":"SkyFishMenuSpawner","target":"SkyFishPageManager","field":"pageManager"},{"source":"SkyFishMenuSpawner","target":"SkyFishInventoryUI","field":"inventoryUI"},{"source":"SkyFishMenuSpawner","target":"SkyFishSlotManager","field":"slotManager"},{"source":"SkyFishMinigame","target":"SkyFishGameManager","field":"localGameManager"},{"source":"SkyFishMinigame","target":"SkyFishNetworkSync","field":"networkSync"},{"source":"SkyFishMinigame","target":"SkyFishUIPositioner","field":"phase2ResultPositioner"},{"source":"SkyFishMusicController","target":"WeatherManager","field":"weatherManager"},{"source":"SkyFishMusicController","target":"SkyFishGlobalEvents","field":"globalEvents"},{"source":"SkyFishNameplate","target":"SkyFishTitleRegistry","field":"titleRegistry"},{"source":"SkyFishNameplate","target":"SkyFishItemRegistry","field":"itemRegistry"},{"source":"SkyFishNameplate","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishNetworkSync","target":"SkyFishSlotManager","field":"slotManager"},{"source":"SkyFishNetworkSync","target":"SkyFishGameManager","field":"localGameManager"},{"source":"SkyFishNetworkSync","target":"SkyFishGunManager","field":"localGunManager"},{"source":"SkyFishNetworkSync","target":"SkyFishLineRenderer","field":"localLineRenderer"},{"source":"SkyFishNetworkSync","target":"SkyFishGrappleLineRenderer","field":"localGrappleLineRenderer"},{"source":"SkyFishNetworkSync","target":"SkyFishBagInventoryUI","field":"bagUI"},{"source":"SkyFishNetworkSync","target":"SkyFishNameplate","field":"remoteNameplate"},{"source":"SkyFishNetworkSync","target":"SkyFishShowOffPickup","field":"showOffPickup"},{"source":"SkyFishNetworkSync","target":"SkyFishRarityVFX","field":"rarityVFX"},{"source":"SkyFishNetworkSync","target":"SkyFishBroadcastManager","field":"broadcastManager"},{"source":"SkyFishOverviewUI","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishOverviewUI","target":"SkyFishAchievements","field":"achievements"},{"source":"SkyFishOverviewUI","target":"SkyFishDailyQuests","field":"dailyQuests"},{"source":"SkyFishOverviewUI","target":"SkyFishTitleRegistry","field":"titleRegistry"},{"source":"SkyFishOverviewUI","target":"SkyFishItemRegistry","field":"itemRegistry"},{"source":"SkyFishOverviewUI","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishPersistence","target":"SkyFishInventoryUI","field":"inventoryUI"},{"source":"SkyFishPersistence","target":"SkyFishAnnouncementHUD","field":"announcementHUD"},{"source":"SkyFishPersistence","target":"SkyFishNetworkSync","field":"localNetworkSync"},{"source":"SkyFishPlayerHUD","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishPlayerHUD","target":"WeatherManager","field":"weatherManager"},{"source":"SkyFishRainController","target":"WeatherManager","field":"weatherManager"},{"source":"SkyFishSeekerVendorCard","target":"SkyFishSeekerVendorManager","field":"manager"},{"source":"SkyFishSeekerVendorManager","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishSeekerVendorManager","target":"SkyFishItemRegistry","field":"itemRegistry"},{"source":"SkyFishSeekerVendorManager","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishSeekerVendorManager","target":"SkyFishCurrencyUI","field":"currencyUI"},{"source":"SkyFishSeekerVendorManager","target":"SkyFishSeekerVendorCard","field":"_cards"},{"source":"SkyFishSellUI","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishSellUI","target":"SkyFishCatchPacker","field":"catchPacker"},{"source":"SkyFishSellUI","target":"FishZoneIndex","field":"zoneData"},{"source":"SkyFishSellUI","target":"SkyFishInventoryUI","field":"inventoryUI"},{"source":"SkyFishSellUI","target":"SkyFishCurrencyUI","field":"currencyUI"},{"source":"SkyFishSellUI","target":"SkyFishMutationBackgrounds","field":"mutationBackgrounds"},{"source":"SkyFishSellUI","target":"SkyFishSellerCard","field":"sellerCards"},{"source":"SkyFishSellUI","target":"SkyFishCard","field":"invCards"},{"source":"SkyFishShowOffPickup","target":"SkyFishNetworkSync","field":"networkSync"},{"source":"SkyFishShowOffPickup","target":"SkyFishMaterialLibrary","field":"materialLibrary"},{"source":"SkyFishShowOffPickup","target":"SkyFishRarityVFX","field":"rarityVFX"},{"source":"SkyFishSlotManager","target":"SkyFishNetworkSync","field":"slotRigs"},{"source":"SkyFishSpecialInventoryUI","target":"SkyFishPersistence","field":"persistence"},{"source":"SkyFishSpecialInventoryUI","target":"SkyFishRaritySystem","field":"raritySystem"},{"source":"SkyFishSpecialInventoryUI","target":"SkyFishChestRewards","field":"chestRewards"},{"source":"SkyFishSpecialInventoryUI","target":"SkyFishCurrencyUI","field":"currencyUI"},{"source":"SkyFishSpecialInventoryUI","target":"SkyFishForgeGemSelectUI","field":"forgeGemSelectUI"},{"source":"SkyFishSpecialInventoryUI","target":"SkyFishSpecialItemCard","field":"specialCards"},{"source":"SkyFishSpecialItemCard","target":"SkyFishSpecialInventoryUI","field":"parentUI"},{"source":"SkyFishZoneTrigger","target":"SkyFishGameManager","field":"gameManager"},{"source":"VulpariDialog","target":"VulpariPresence","field":"presence"},{"source":"VulpariDialog","target":"VulpariPrompt","field":"prompt"},{"source":"VulpariDialog","target":"VulpariDialogUI","field":"dialogUI"},{"source":"VulpariDialog","target":"VulpariDialogRegistry","field":"dialogRegistry"},{"source":"VulpariDialogUI","target":"VulpariTextAnimator","field":"textAnimator"},{"source":"VulpariFlourish","target":"VulpariPresence","field":"presence"},{"source":"VulpariFlourish","target":"VulpariDialog","field":"dialog"},{"source":"VulpariIdleMotion","target":"VulpariDialog","field":"dialog"},{"source":"VulpariPresence","target":"VulpariBlink","field":"blink"},{"source":"VulpariPrompt","target":"VulpariTextAnimator","field":"textAnimator"},{"source":"VulpariPrompt","target":"VulpariDialogRegistry","field":"dialogRegistry"},{"source":"VulpariTextAnimator","target":"VulpariVoice","field":"voice"},{"source":"WeatherListener","target":"WeatherManager","field":"weatherManager"},{"source":"WeatherManager","target":"SkyFishAnnouncementHUD","field":"announcementHud"}]};
 
 // -- Force-directed graph ---------------------------------------------------
 const svg = d3.select('#graph');
